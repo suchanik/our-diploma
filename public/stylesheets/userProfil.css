@@ -1,0 +1,48 @@
+#dish{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+}
+.haha{
+    display: flex;
+    justify-content: left;
+}
+
+.right{
+    margin-right: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#dish h5{
+    margin: 2rem 0;
+}
+#dish h6{
+    margin-top: 2rem;
+    display: flex;
+}
+i{
+    font-size: x-large;
+    margin: .3rem;
+}
+
+#execution{
+    margin-right: 16rem;
+}
+
+input{
+    margin-top: 1rem;
+    height: 80px;
+    width: 80%;
+}
+button{
+    /*width: 50%;*/
+    margin-top: 2rem;
+    color: red;
+}

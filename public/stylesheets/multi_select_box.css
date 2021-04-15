@@ -1,0 +1,17 @@
+.multi_select_box{
+    width: 400px;
+    margin-top: 3rem;
+}
+.multi_select_box select{
+    width: 100%;
+}
+.multi_select_box button{
+    box-shadow: black;
+    border-color: #6FCF97;
+}
+ul{
+    margin-left: 180px;
+    margin-top: -100px;
+    z-index: 2;
+}
+

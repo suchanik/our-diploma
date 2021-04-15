@@ -1,0 +1,85 @@
+<link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css"
+      integrity="sha512-6g9IGCc67eh+xK03Z8ILcnKLbJnKBW+qpEdoUVD/4hBa2Ghiq5dQgeNOGWJfGoe9tdCRM4GpJMnsRXa2FDJp9Q=="
+      crossorigin="anonymous"/>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
+      integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
+      crossorigin="anonymous"/>
+
+<link rel="stylesheet" href="/stylesheets/multi_select_box.css" type="text/css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Rhodium+Libre&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--<script src="https://unpkg.com/react@17/umd/react.development.js"></script>-->
+<!--<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>-->
+
+<!-- Don't use this in production: -->
+<!--<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>-->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.js"
+        integrity="sha512-iqhWkvLOXVDz+Lr//ZryEKNvZ5pmgdKEe58Wh/VwfTGwTku0MKbuLhjJ1zUAJu8iSbOqfLcXrrxJ61+27THi2Q=="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
+        integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
+        crossorigin="anonymous"></script>
+<script src="/javascripts/main.js"></script>
+
+
+<html lang="pl">
+
+<body>
+{{> navbar}}
+
+<div class="center">
+    <section id="ingredient">
+        <div class="container">
+            <h2>Wyszukaj przepisy po składnikach</h2>
+            <div class="multi_select_box">
+                <!--                main.js  linijka: 54-->
+                <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
+                        data-selected-text-format="count > 3" multiple>
+                    {{#each ingredients}}
+                        <option value="{{this.ID_ingredient}}">{{this.ing_name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <button type="submit" id="show-recipes-btn" style="margin-top: 20px;">Szukaj przepisów</button>
+        </div>
+
+    </section>
+
+    <ul id="rendered_recipes-list">
+
+    </ul>
+
+</div>
+</body>
+
+
+<!--<section id="type">-->
+<!--    <h4>Pokaz przepisy po kategori</h4>-->
+<!--    <select id="types-select" multiple>-->
+        <!--        {{#each ingredients}}-->
+<!--            <option value="{{this.ID_ingredient}}">{{this.ing_name}}</option>-->
+        <!--        {{/each}}-->
+<!--    </select>-->
+
+<!--    <label for="1">fit</label>-->
+<!--    <input type="checkbox" id="2" name="2">-->
+<!--    <label for="2">kuchnia francuska</label>-->
+<!--    <input type="checkbox" id="3" name="3">-->
+<!--    <label for="3">wegetariańskie</label>-->
+<!--    <input type="checkbox" id="4" name="4">-->
+<!--    <label for="4">kuchnia włoska</label>-->
+
+<!--    <button type="submit">Pokaż przepisy</button>-->
+
+<!--</section>-->
+

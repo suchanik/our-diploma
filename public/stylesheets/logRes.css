@@ -1,0 +1,32 @@
+#board{
+    padding-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.window{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.window h4{
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+}
+.window input{
+    background-color: rgba(111,207,151,0.5);
+    border-style: none;
+}
+
+.button{
+    margin: 2rem;
+    /*background-color: #6FCF97;*/
+    /*border-style: none;*/
+}
+
+a{
+    color: black !important;
+}

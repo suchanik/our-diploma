@@ -1,0 +1,36 @@
+{
+  "name": "untitled",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "devStart": "nodemon users.js",
+    "start": "node ./bin/www",
+    "dev": "next",
+    "build": "next build"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap-select": "^1.13.18",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "express": "~4.16.1",
+    "hbs": "~4.0.4",
+    "http-errors": "~1.6.3",
+    "jquery": "^3.6.0",
+    "morgan": "~1.9.1",
+    "next": "^10.0.9",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mysql": "^5.0.10",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "bcrypt": "^5.0.1",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5"
+  }
+}

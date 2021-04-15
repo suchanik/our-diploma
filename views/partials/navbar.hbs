@@ -1,0 +1,28 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/partials/navbar.css">
+</head>
+
+<div class="container-fluid mb-5" id="header" >
+    <div class="menu">
+        <div class="epapu"><a href="/">E-papu</a></div>
+        <a href="/top" title="Top przepisy">Top</a>
+        <a href="/ingredients" title="Wyszukaj przepisy po składnikach">Składniki</a>
+        <a href="/category" title="Rodzaje kuchni">Kuchnia</a>
+        <a href="/randomRecipe" title="Losuj przepis">Losuj </a>
+
+        {{#if session.loggedin}}
+            <div class="icon">
+                <a href="/users/profile">
+                    {{session.name}} <i class="far fa-user" style="color: beige; " title="Logowanie/Rejestracja"></i>
+                </a>
+            </div>
+        {{else}}
+            <div class="icon">
+                <a href="/users/log">
+                    Zaloguj <i class="far fa-user" style="color: beige; " title="Logowanie/Rejestracja"></i>
+                </a>
+            </div>
+        {{/if}}
+    </div>
+
+</div>
