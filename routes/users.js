@@ -17,17 +17,24 @@ router.get('/reg', function (req, res, next) {
 });
 router.get('/profile', function (req, res, next) {
 
+  connection.query("select email, login from users where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
+
+    const data = result.shift();
+
+    res.render('userProfil', {
+      login: data.login,
+      email: data.email,
+    });
+  }))
 
 
-  res.render('userProfil', {
-    // login: asdas,
-    // email: asdasd
-  });
+
 });
 
 router.get("/logOut", ((req, res) => {
   req.session.loggedin = false;
   req.session.name = null;
+  req.session.userId = null
   res.redirect("/");
 }))
 
@@ -43,7 +50,8 @@ router.post("/auth", function (req, res) {
       if (isPasswordMatched) {
         req.session.loggedin = true;
         req.session.name = name;
-        // res.send("Zalogowano się")
+        req.session.userId = storedUser.id_user;
+            // res.send("Zalogowano się")
         res.redirect('/')
       } else {
         res.send('Nieprawidłowe dane. Spróbuj ponownie.');
