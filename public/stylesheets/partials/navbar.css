@@ -44,5 +44,21 @@
     position: relative;
     cursor: pointer;
     background-position: 50%;
+    color: beige;
+}
+
+.fa-door-open{
+    display: flex;
+    align-content: center;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    cursor: pointer;
+    background-position: 50%;
+    color: beige;
+}
+
+iconWrapper {
+    display: inline-flex;
 }
 

@@ -11,15 +11,18 @@
         <a href="/randomRecipe" title="Losuj przepis">Losuj </a>
 
         {{#if session.loggedin}}
-            <div class="icon">
+            <div class="iconWrapper">
                 <a href="/users/profile">
-                    {{session.name}} <i class="far fa-user" style="color: beige; " title="Logowanie/Rejestracja"></i>
+                    <i class="far fa-door-open" title="Wyloguj"></i>
+                </a>
+                <a href="/users/profile">
+                    {{session.name}} <i class="far fa-user"title="Twój profil"></i>
                 </a>
             </div>
         {{else}}
-            <div class="icon">
+            <div class="iconWrapper">
                 <a href="/users/log">
-                    Zaloguj <i class="far fa-user" style="color: beige; " title="Logowanie/Rejestracja"></i>
+                    <i class="far fa-user" title="Logowanie/Rejestracja"></i> Zaloguj
                 </a>
             </div>
         {{/if}}
