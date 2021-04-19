@@ -16,15 +16,27 @@ router.get('/', function(req, res, next) {
       })
     }
   });
-
-  //
-  // const ingredients = getAllIngredients();
-  // res.render('main', {
-  //   title: 'Epapu',
-  //   ingredients: ingredients
-  // });
 });
+router.get('/ingredients', function(req, res, next) {
+
+  connection.query('SELECT * FROM ingredients ORDER BY ing_name;',function (error, results, fields) {
+    if(error){
+      console.log("error");
+    }else{
+      console.log(results)
+      res.render("ingredientsPage", {
+        title: "Epapu",
+        ingredients: results
+      })
+    }
+  });
+});
+
 router.all("/", ((req, res) => {
+    getAllIngredients();
+}))
+
+router.all("ingredients", ((req, res) => {
     getAllIngredients();
 }))
 

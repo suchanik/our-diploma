@@ -15,20 +15,16 @@ router.get('/log',function (req, res, next) {
 router.get('/reg', function (req, res, next) {
   res.render('register');
 });
+
 router.get('/profile', function (req, res, next) {
 
   connection.query("select email, login from users where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
-
     const data = result.shift();
-
     res.render('userProfil', {
       login: data.login,
       email: data.email,
     });
   }))
-
-
-
 });
 
 router.get("/logOut", ((req, res) => {

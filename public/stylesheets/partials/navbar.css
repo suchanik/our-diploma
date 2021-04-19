@@ -46,6 +46,11 @@
     background-position: 50%;
     color: beige;
 }
+.fa-user:before{
+    display: flex;
+    align-content: center;
+    position: relative;
+}
 
 .fa-door-open{
     display: flex;

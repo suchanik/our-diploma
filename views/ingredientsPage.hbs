@@ -29,7 +29,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
         integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
         crossorigin="anonymous"></script>
-<script src="/javascripts/main.js"></script>
 
 
 <html lang="pl">
@@ -46,7 +45,7 @@
                 <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
                         data-selected-text-format="count > 3" multiple>
                     {{#each ingredients}}
-                        <option value="{{this.ID_ingredient}}">{{this.ing_name}}</option>
+                        <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
                     {{/each}}
                 </select>
             </div>
@@ -55,11 +54,18 @@
 
     </section>
 
+    <div class="alert alert-danger" id="recipes-error-alert" hidden>
+
+    </div>
+
     <ul id="rendered_recipes-list">
 
     </ul>
 
 </div>
+
+
+<script src="/javascripts/main.js"></script>
 </body>
 
 
