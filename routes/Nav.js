@@ -12,7 +12,7 @@ router.get('/randomRecipe',  (req, res) => {
     res.render('randomRecipe');
 });
 router.get('/favourite',  (req, res) => {
-    res.render('favouriteRecipesPage');
+    res.render('favouriteRecipes');
 });
 
 module.exports = router

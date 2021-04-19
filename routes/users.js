@@ -50,10 +50,10 @@ router.post("/auth", function (req, res) {
             // res.send("Zalogowano się")
         res.redirect('/')
       } else {
-        res.send('Nieprawidłowe dane. Spróbuj ponownie.');
+        res.redirect('/users/log')
       }
     } else {
-      res.send('Nieprawidłowe dane. Spróbuj ponownie.');
+      res.redirect('/users/log')
     }
   }));
 });

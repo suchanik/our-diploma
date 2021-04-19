@@ -1,53 +1,6 @@
-<link rel="stylesheet" href="/stylesheets/style.css" type="text/css">
-<link rel="stylesheet" href="/stylesheets/header.css" type="text/css">
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.css"
-      integrity="sha512-6g9IGCc67eh+xK03Z8ILcnKLbJnKBW+qpEdoUVD/4hBa2Ghiq5dQgeNOGWJfGoe9tdCRM4GpJMnsRXa2FDJp9Q=="
-      crossorigin="anonymous"/>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
-      integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
-      crossorigin="anonymous"/>
-
-<link rel="stylesheet" href="/stylesheets/multi_select_box.css" type="text/css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Rhodium+Libre&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap" rel="stylesheet">
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<!--<script src="https://unpkg.com/react@17/umd/react.development.js"></script>-->
-<!--<script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>-->
-
-<!-- Don't use this in production: -->
-<!--<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>-->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.bundle.js"
-        integrity="sha512-iqhWkvLOXVDz+Lr//ZryEKNvZ5pmgdKEe58Wh/VwfTGwTku0MKbuLhjJ1zUAJu8iSbOqfLcXrrxJ61+27THi2Q=="
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
-        integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
-        crossorigin="anonymous"></script>
-<script src="/javascripts/main.js"></script>
-
-
-<html lang="pl">
-
 <body>
-<div class="container-fluid" id="header">
-    <div class="menu">
-        <div class="epapu"><a href="/">E-papu</a></div>
-        <a href="/nav/top" title="Top przepisy">Top</a>
-        <a href="/ingredients" title="Wyszukaj przepisy po składnikach">Składniki</a>
-        <a href="/nav/category" title="Rodzaje kuchni">Kuchnia</a>
-        <a href="/nav/randomRecipe" title="Losuj przepis">Losuj </a>
-        <div class="icon"><a href="/users/log"><i class="far fa-user" style="color: beige; "
-                                                  title="Logowanie/Rejestracja"></i></a></div>
-    </div>
 
-</div>
+{{> navbar}}
 
 <div class="center">
     <div class="container">
@@ -88,3 +41,6 @@
         </div>
 
     </div>
+</div>
+<script src="/javascripts/main.js"></script>
+</body>
