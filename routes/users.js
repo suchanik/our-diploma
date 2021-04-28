@@ -3,9 +3,6 @@ const router = express.Router()
 
 const connection = require('../config/db_config')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const cookieParser = require('cookie-parser')
-
 
 
 router.get('/', function (req, res, next) {
@@ -24,27 +21,25 @@ router.get('/profile', function (req, res, next) {
     const data = result.shift();
     if (!data) {
       res.render("/")
+    }else{
+      res.render('userProfil', {
+        login: data.login,
+        email: data.email,
+      });
     }
 
-    res.render('userProfil', {
-      login: data.login,
-      email: data.email,
-    });
   }))
 });
 
 router.get("/logOut", ((req, res) => {
-  res.status(200).clearCookie('connect.sid', {
+  res.clearCookie('connect.sid', {
     path: '/'
   });
+  res.clearCookie('myCookie');
   req.session.destroy((err) => {
     if(err) throw err;
     res.redirect("/");
   })
-  // req.session.loggedin = false;
-  // req.session.name = null;
-  // req.session.userId = null /////
-
 }))
 
 router.post("/auth", function (req, res) {
@@ -63,13 +58,6 @@ router.post("/auth", function (req, res) {
         req.session.loggedin = true;
         req.session.name = name;
         req.session.userId = storedUser.id_user;
-        // const cookies = {
-        //   expires: new Date(
-        //       Date.now() + 90 * 24 * 60 * 60 * 1000
-        //   ),
-        //   httpOnly: true
-        // }
-        // res.cookie('cookie', token, cookies);
         res.status(200).redirect('/')
       } else {
         return res.status(400).render('log', {

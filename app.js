@@ -33,8 +33,11 @@ app.use(session({
 
 //Session middleware - zwraca atrybuty sesji z zapytania do odpowiedzi
 app.use(function (req, res, next) {
+  if (!req.user)
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
   res.locals.session = req.session;
   next();
+
 });
 
 
