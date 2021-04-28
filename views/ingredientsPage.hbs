@@ -3,7 +3,7 @@
 
 <div class="center">
     <section id="ingredient">
-        <div class="container">
+        <div style="margin-bottom: 0.5rem " class="container">
             <h2>Wyszukaj przepisy po składnikach</h2>
             <div class="multi_select_box">
                 <!--                main.js  linijka: 54-->
@@ -14,10 +14,32 @@
                     {{/each}}
                 </select>
             </div>
-            <button type="submit" id="show-recipes-btn" style="margin-top: 20px;">Szukaj przepisów</button>
+            <button type="submit" id="show-recipes-by-ingredients-btn" style="margin-top: 20px;">Szukaj przepisów</button>
         </div>
 
-    </section>
+<!--    </section>-->
+<!--    <section id="category">-->
+<!--        <div style="margin-top: 0;" class="container">-->
+<!--            <div class="multi_select_box">-->
+<!--                <select class="category-select w-100" id="category-select" data-live-search="true"-->
+<!--                        data-selected-text-format="count > 3" multiple>-->
+<!--                    {{#each category}}-->
+<!--                        <option value="{{this.id_category}}">{{this.name}}</option>-->
+<!--                    {{/each}}-->
+<!--                </select>-->
+<!--            </div>-->
+<!--            <button type="submit" id="show-recipes-by-ingredients-btn">Szukaj przepisów</button>-->
+<!--        </div>-->
+
+<!--    </section>-->
+
+<!--    <div class="alert alert-danger" id="recipes-error-alert" hidden>-->
+
+<!--    </div>-->
+
+<!--    <ul id="rendered_CRecipes-list">-->
+
+<!--    </ul>-->
 
     <div class="alert alert-danger" id="recipes-error-alert" hidden>
 
@@ -26,6 +48,7 @@
     <ul id="rendered_recipes-list">
 
     </ul>
+
 
 </div>
 

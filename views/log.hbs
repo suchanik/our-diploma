@@ -19,6 +19,9 @@
                 <a style="color: black;" href="/users/reg"><h6>Zarejestruj się!</h6></a>
             </div>
         </form>
+        {{#if message }}
+            <h7 class="alert alert-danger" style="display: flex; justify-content: center;">{{message}}</h7>
+        {{/if}}
     </div>
 </div>
 

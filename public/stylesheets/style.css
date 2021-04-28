@@ -82,8 +82,16 @@ figcaption{
   text-align: center;
 }
 
-button{
-  margin: 2rem;
+#show-recipes-by-ingredients-btn{
+  margin: 2rem 0;
   background-color: #6FCF97;
   border-style: none;
+}
+#show-recipes-by-category-btn{
+  margin: 2rem 0;
+  background-color: #6FCF97;
+  border-style: none;
+}
+ul#rendered_recipes-list a{
+  color: black;
 }

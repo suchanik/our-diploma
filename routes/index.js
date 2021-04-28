@@ -45,5 +45,19 @@ router.get('/ingredients',  (req, res) => {
 });
 
 
+router.get('/category', function(req, res, next) {
+
+  connection.query('SELECT * FROM category ORDER BY name;',function (error, results, fields) {
+    if(error){
+      console.log("error");
+    }else{
+      console.log(results)
+      res.render("categoryPage", {
+        title: "Epapu",
+        ingredients: results
+      })
+    }
+  });
+});
 
 module.exports = router;

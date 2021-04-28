@@ -1,4 +1,4 @@
-$("#show-recipes-btn").on("click", () => {
+$("#show-recipes-by-ingredients-btn").on("click", () => {
     const selectedIngredients = $("#ingredients-select option:selected").map(function () {
         return this.value;
     }).get();
@@ -25,35 +25,38 @@ const renderErrorMsg = msg => {
         .prop("hidden", false);
 }
 
+//losowy przepis
 const renderSelectedRecipes = recipes => {
     const $list = $("#rendered_recipes-list");
     $list.html("")
 
     recipes.forEach(recipe => {
-        $list.append(`<li>${recipe.name} - ${recipe.opis}</li>`)
+        $list.append(`<li> <a href="/randomRecipe" >${recipe.name}</a> </li>`)
     })
+
 }
 
-$("#show-recipes1-btn").on("click", () => {
-    const selectedKathegories = $("#types-select option:selected").map(function () {
+//przepisy po kategroiach
+$("#show-recipes-by-category-btn").on("click", () => {
+    const selectedCategories = $("#category-select option:selected").map(function () {
         return this.value;
     }).get();
 
     $.ajax({
-        url: "recipes/all_recipes_by_kathegory",
+        url: "recipes/all_recipes_by_category",
         method: "POST",
         data: JSON.stringify({
-            kathegoryID: selectedKathegories
+            categoryID: selectedCategories
         }),
         contentType: "application/json",
         success: results => {
-            typeSelectedRecipes(results)
+            categorySelectedRecipes(results)
         }
     })
 })
 
-const typeSelectedRecipes = recipes => {
-    const $list = $("#rendered_recipes-list");
+const categorySelectedRecipes = recipes => {
+    const $list = $("#rendered_CRecipes-list");
     $list.html("")
 
     recipes.forEach(recipe => {
@@ -62,4 +65,7 @@ const typeSelectedRecipes = recipes => {
 }
 $(document).ready(() => {
     $(".ingredients-select").selectpicker();
+})
+$(document).ready(() => {
+    $(".category-select").selectpicker();
 })

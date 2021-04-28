@@ -19,6 +19,7 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "jquery": "^3.6.0",
+    "jsonwebtoken": "^8.5.1",
     "morgan": "~1.9.1",
     "next": "^10.0.9",
     "passport": "^0.4.1",
