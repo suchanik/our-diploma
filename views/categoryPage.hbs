@@ -2,68 +2,72 @@
 <body>
 {{> navbar}}
 
-<!--<div class="center">-->
-<!--    <section id="category">-->
-<!--        <div class="container">-->
-<!--            <h2>Wyszukaj przepisy po kategori</h2>-->
-<!--            <div class="multi_select_box">-->
-<!--                <select class="category-select w-100" id="category-select" data-live-search="true"-->
-<!--                        data-selected-text-format="count > 3" multiple>-->
-<!--                    {{#each category}}-->
-<!--                        <option value="{{this.id_category}}">{{this.name}}</option>-->
-<!--                    {{/each}}-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <button type="submit" id="show-recipes-by-category-btn">Szukaj przepisów</button>-->
+<div class="center">
+    <section id="category">
+        <div class="container">
+            <h2>Wyszukaj przepisy po kategori</h2>
+            <div class="multi_select_box">
+                <select class="category-select w-100" id="category-select" data-live-search="true"
+                        data-selected-text-format="count > 3" multiple>
+                    {{#each category}}
+                        <option value="{{this.id_category}}">{{this.name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <button type="submit" id="show-recipes-by-category-btn">Szukaj przepisów</button>
+        </div>
+
+    </section>
+
+    <div class="alert alert-danger" id="recipes-error-alert" hidden>
+
+    </div>
+
+    <ul id="rendered_CRecipes-list">
+
+    </ul>
+
+
+<!--    <div class="container">-->
+<!--        <div>-->
+<!--            <h2 class="background__color">Kuchnia Polska</h2>-->
 <!--        </div>-->
-
-<!--    </section>-->
-
-<!--    <div class="alert alert-danger" id="recipes-error-alert" hidden>-->
-
+<!--        <div class="row">-->
+<!--            <div class="col-12 col-md-4">-->
+<!--                <img src="https://tesco.pl/imgglobal/content_platform/recipes/main/e7/sized/756x426-100-fff-700-0/e7060e4898255a63b1e18d8a7d6c4b0f.jpg" class="img-thumbnail">-->
+<!--                <figcaption>Schabowy</figcaption>-->
+<!--            </div>-->
+<!--            <div class="col-6 col-md-4">-->
+<!--                <img src="https://cdn.aniagotuje.com/pictures/articles/2020/01/1968771-v-1500x1500.jpg" class="img-thumbnail">-->
+<!--                <figcaption>Rosół</figcaption>-->
+<!--            </div>-->
+<!--            <div class="col-6 col-md-4">-->
+<!--                <img src="https://akademiasmaku.pl/upload/recipes/4632/mizeria-4632.jpg" class="img-thumbnail img-fluid">-->
+<!--                <figcaption>Mizeria</figcaption>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="container">-->
+<!--        <div>-->
+<!--            <h2 class="background__color">Kuchnia Włoska</h2>-->
+<!--        </div>-->
+<!--        <div class="row">-->
+<!--            <div class="col-12 col-md-4">-->
+<!--                <img src="https://tesco.pl/imgglobal/content_platform/recipes/main/e7/sized/756x426-100-fff-700-0/e7060e4898255a63b1e18d8a7d6c4b0f.jpg" class="img-thumbnail">-->
+<!--                <figcaption>Schabowy</figcaption>-->
+<!--            </div>-->
+<!--            <div class="col-6 col-md-4">-->
+<!--                <img src="https://cdn.aniagotuje.com/pictures/articles/2020/01/1968771-v-1500x1500.jpg" class="img-thumbnail">-->
+<!--                <figcaption>Rosół</figcaption>-->
+<!--            </div>-->
+<!--            <div class="col-6 col-md-4">-->
+<!--                <img src="https://akademiasmaku.pl/upload/recipes/4632/mizeria-4632.jpg" class="img-thumbnail img-fluid">-->
+<!--                <figcaption>Mizeria</figcaption>-->
+<!--            </div>-->
+<!--        </div>-->
 <!--    </div>-->
 
-<!--    <ul id="rendered_CRecipes-list">-->
 
-<!--    </ul>-->
-    <div class="container">
-        <div>
-            <h2 class="background__color">Kuchnia Polska</h2>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <img src="https://tesco.pl/imgglobal/content_platform/recipes/main/e7/sized/756x426-100-fff-700-0/e7060e4898255a63b1e18d8a7d6c4b0f.jpg" class="img-thumbnail">
-                <figcaption>Schabowy</figcaption>
-            </div>
-            <div class="col-6 col-md-4">
-                <img src="https://cdn.aniagotuje.com/pictures/articles/2020/01/1968771-v-1500x1500.jpg" class="img-thumbnail">
-                <figcaption>Rosół</figcaption>
-            </div>
-            <div class="col-6 col-md-4">
-                <img src="https://akademiasmaku.pl/upload/recipes/4632/mizeria-4632.jpg" class="img-thumbnail img-fluid">
-                <figcaption>Mizeria</figcaption>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <div>
-            <h2 class="background__color">Kuchnia Włoska</h2>
-        </div>
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <img src="https://tesco.pl/imgglobal/content_platform/recipes/main/e7/sized/756x426-100-fff-700-0/e7060e4898255a63b1e18d8a7d6c4b0f.jpg" class="img-thumbnail">
-                <figcaption>Schabowy</figcaption>
-            </div>
-            <div class="col-6 col-md-4">
-                <img src="https://cdn.aniagotuje.com/pictures/articles/2020/01/1968771-v-1500x1500.jpg" class="img-thumbnail">
-                <figcaption>Rosół</figcaption>
-            </div>
-            <div class="col-6 col-md-4">
-                <img src="https://akademiasmaku.pl/upload/recipes/4632/mizeria-4632.jpg" class="img-thumbnail img-fluid">
-                <figcaption>Mizeria</figcaption>
-            </div>
-        </div>
-    </div>
 </div>
-<script src="/javascripts/main.js"></script>
+<script src="/javascripts/categorySelector.js"></script>
 </body>

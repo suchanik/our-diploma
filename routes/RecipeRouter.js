@@ -51,36 +51,11 @@ router.get('/randomRecipe', function (req, res, next) {
 
 //wyszukiwanie po kategoriach
 router.post('/all_recipes_by_category', async function(req, res, next) {
-    const rec_cat = req.body.rec_cat;
+    const categoryIDs = req.body.categoryIDs;
 
-    const allRecipes = await recipeService.getRecipesByRecipe_category(rec_cat)
-    const filteredRecipes = await filterRecipesByCategory(allRecipes, rec_cat);
-    res.json(filteredRecipes);
+    const allRecipes = await recipeService.getRecipesByRecipe_category(categoryIDs)
+    res.json(allRecipes);
 });
 
-
-
-const filterRecipesByCategory =  async (recipes, categoryIDs) => {
-
-    const recipeCategory = [];
-
-
-    for (const recipe of recipes) {
-        const category = await recipeService.getRecipesByCategory(recipe.id);
-
-        recipeCategory.push({...recipe, category})
-    }
-
-    const filteredRecipes = recipeCategory.filter(elem => {
-        return elem.category.every(i => categoryIDs.includes(i.id.toString()));
-    });
-
-    console.log(filteredRecipes)
-
-    return recipes.filter(recipe => filteredRecipes
-        .map(recipeWithCategory => recipeWithCategory.id)
-        .includes(recipe.id)
-    );
-}
 
 module.exports = router;
