@@ -36,36 +36,6 @@ const renderSelectedRecipes = recipes => {
 
 }
 
-//przepisy po kategroiach
-$("#show-recipes-by-category-btn").on("click", () => {
-    const selectedCategories = $("#category-select option:selected").map(function () {
-        return this.value;
-    }).get();
-
-    $.ajax({
-        url: "recipes/all_recipes_by_category",
-        method: "POST",
-        data: JSON.stringify({
-            categoryID: selectedCategories
-        }),
-        contentType: "application/json",
-        success: results => {
-            categorySelectedRecipes(results)
-        }
-    })
-})
-
-const categorySelectedRecipes = recipes => {
-    const $list = $("#rendered_CRecipes-list");
-    $list.html("")
-
-    recipes.forEach(recipe => {
-        $list.append(`<li>${recipe.name} - ${recipe.opis}</li>`)
-    })
-}
 $(document).ready(() => {
     $(".ingredients-select").selectpicker();
-})
-$(document).ready(() => {
-    $(".category-select").selectpicker();
 })

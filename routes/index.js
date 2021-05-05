@@ -19,7 +19,7 @@ router.get('/', function(req, res, next) {
 });
 router.get('/ingredients', function(req, res, next) {
 
-  connection.query('SELECT * FROM ingredients ORDER BY ing_name;',function (error, results, fields) {
+  connection.query('SELECT * FROM category ORDER BY name;',function (error, results, fields) {
     if(error){
       console.log("error");
     }else{
