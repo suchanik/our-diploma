@@ -12,6 +12,18 @@ router.post('/all_recipes_by_ingredients', async function(req, res, next) {
     res.json(filteredRecipes);
 });
 
+//wyszukiwanie po kategoriach
+router.post('/all_recipes_by_category', async (req, res, next)=>{
+    try{
+        const categoryIDs = req.body.categoryIDs;
+
+        const allRecipes = await recipeService.getRecipesByRecipe_category(categoryIDs)
+        res.json(allRecipes);
+    }catch (err){
+        next(err);
+    }
+});
+
 
 
 const filterRecipes =  async (recipes, ingredientsIDs) => {
@@ -49,13 +61,7 @@ router.get('/randomRecipe', function (req, res, next) {
 });
 ////////////////////////
 
-//wyszukiwanie po kategoriach
-router.post('/all_recipes_by_category', async function(req, res, next) {
-    const categoryIDs = req.body.categoryIDs;
 
-    const allRecipes = await recipeService.getRecipesByRecipe_category(categoryIDs)
-    res.json(allRecipes);
-});
 
 
 module.exports = router;

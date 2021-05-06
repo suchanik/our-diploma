@@ -54,7 +54,7 @@ router.get('/category', function(req, res, next) {
       console.log(results)
       res.render("categoryPage", {
         title: "Epapu",
-        ingredients: results
+        category: results
       })
     }
   });

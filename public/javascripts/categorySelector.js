@@ -41,7 +41,7 @@ const categorySelectedRecipes = recipes => {
     $list.html("")
 
     recipes.forEach(recipe => {
-        $list.append(`<li>${recipe.name} - ${recipe.opis}</li>`)
+        $list.append(`<li>${recipe.name}</li>`)
     })
 }
 

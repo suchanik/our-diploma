@@ -1,7 +1,7 @@
 const connection = require("../config/db_config")
 
 //wyszukiwanie po składnikach
-const getRecipeByIngredientsID = recipeId => {
+const getIngredientsByRecipeId = recipeId => {
     return new Promise(((resolve, reject) => {
         connection.query(
             "select ingredients.ID_ingredient as id, ing_name, id_unit\n" +
@@ -37,7 +37,7 @@ const getRecipesByRecipe_ingredient = ingredientIDs => {
 
 //Wyszukiwanie po kategoriach
 
-const getRecipesByCategory = categoryId => {
+const getCategoriesByRecipeId = categoryId => {
     return new Promise(((resolve, reject) => {
         connection.query(
             "select category.id_category as id, name from category" +
@@ -56,8 +56,7 @@ const getRecipesByCategory = categoryId => {
 const getRecipesByRecipe_category = rec_cat => {
     return new Promise((resolve, reject) => {
         connection.query(
-            'select distinct recipes.id_recipe, recipes.name, recipes.opis FROM recipes, recipe_category' +
-            'WHERE recipe_category.id_recipe = recipes.id_recipe  and id_category IN (?);',[rec_cat], function (error, results, fields) {
+            'select distinct id_recipe as id, name from recipes natural join recipe_category where id_category in (?);',[rec_cat], function (error, results, fields) {
 
                 if (error) {
                     console.log(results);
@@ -72,8 +71,8 @@ const getRecipesByRecipe_category = rec_cat => {
 
 
 module.exports = {
-    getRecipeByIngredientsID,
+    getRecipeByIngredientsID: getIngredientsByRecipeId,
     getRecipesByRecipe_ingredient,
+    getRecipesByCategory: getCategoriesByRecipeId,
     getRecipesByRecipe_category,
-    getRecipesByCategory,
 }
