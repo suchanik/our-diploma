@@ -21,7 +21,7 @@ const getIngredientsByRecipeId = recipeId => {
 const getRecipesByRecipe_ingredient = ingredientIDs => {
     return new Promise((resolve, reject) => {
         connection.query(
-            'SELECT distinct recipes.id_recipe as "id", recipes.name, recipes.opis FROM recipes, `recipe_ingredient` ' +
+            'SELECT distinct recipes.id_recipe as "id", recipes.name, recipes.description FROM recipes, `recipe_ingredient` ' +
             'WHERE `recipe_ingredient`.ID_recipe = recipes.id_recipe and ID_ingredient in (?);',[ingredientIDs], function (error, results, fields) {
                 // console.log(results);
 
@@ -40,8 +40,8 @@ const getRecipesByRecipe_ingredient = ingredientIDs => {
 const getCategoriesByRecipeId = categoryId => {
     return new Promise(((resolve, reject) => {
         connection.query(
-            "select category.id_category as id, name from category" +
-            "left join recipe_category rt on category.id_category = rt.id_category" +
+            "select categories.id_category as id, name from categories" +
+            "left join recipe_category rt on categories.id_category = rt.id_category" +
             "where rt.id_recipe = ?;",[categoryId], function (error, results, fields) {
                 if (error) {
                     console.log(results);
@@ -68,11 +68,39 @@ const getRecipesByRecipe_category = rec_cat => {
     })
 }
 
+const getRecipeById = id => {
+    return new Promise((resolve, reject) => {
+        connection.query('select * from recipes where id_recipe = ?', [id], ((err, result, fields) => {
+            if (err) {
+                console.log(result);
+                return reject(error);
+            }
+
+            resolve(result.shift());
+        }))
+    })
+}
+
+const getIngredients = id => {
+    return new Promise((resolve, reject) => {
+        connection.query('select distinct * from ingredients natural join recipe_ingredient where id_recipe = ?',[id], ((err, result, fields) => {
+            if (err) {
+                console.log(result);
+                return reject(error);
+            }
+
+            resolve(result);
+        }))
+    })
+}
+
 
 
 module.exports = {
-    getRecipeByIngredientsID: getIngredientsByRecipeId,
+    getIngredientsByRecipeId,
     getRecipesByRecipe_ingredient,
-    getRecipesByCategory: getCategoriesByRecipeId,
+    getCategoriesByRecipeId,
     getRecipesByRecipe_category,
+    getRecipeById,
+    getIngredients,
 }

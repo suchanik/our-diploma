@@ -47,7 +47,7 @@ router.get('/ingredients',  (req, res) => {
 
 router.get('/category', function(req, res, next) {
 
-  connection.query('SELECT * FROM category ORDER BY name;',function (error, results, fields) {
+  connection.query('SELECT * FROM categories ORDER BY name;',function (error, results, fields) {
     if(error){
       console.log("error");
     }else{

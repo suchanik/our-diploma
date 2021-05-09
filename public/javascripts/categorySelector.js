@@ -12,6 +12,7 @@ $("#show-recipes-by-category-btn").on("click", () => {
         contentType: "application/json",
         success: results => {
             categorySelectedRecipes(results)
+            console.log(results)
         },
         error: err => {
             renderErrorMsg("Wystąpił błąd w wyszukiwaniu");
@@ -41,7 +42,7 @@ const categorySelectedRecipes = recipes => {
     $list.html("")
 
     recipes.forEach(recipe => {
-        $list.append(`<li>${recipe.name}</li>`)
+        $list.append(`<li> <a href=/recipes/${recipe.id} >${recipe.name}</a> </li>`)
     })
 }
 

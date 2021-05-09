@@ -31,6 +31,8 @@ router.get('/profile', function (req, res, next) {
   }))
 });
 
+
+
 router.get("/logOut", ((req, res) => {
   res.clearCookie('connect.sid', {
     path: '/'

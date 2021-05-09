@@ -32,7 +32,7 @@ const filterRecipes =  async (recipes, ingredientsIDs) => {
 
 
     for (const recipe of recipes) {
-        const ingredients = await recipeService.getRecipeByIngredientsID(recipe.id);
+        const ingredients = await recipeService.getIngredientsByRecipeId(recipe.id);
 
         recipeIngredients.push({...recipe, ingredients})
     }
@@ -60,6 +60,22 @@ router.get('/randomRecipe', function (req, res, next) {
     }))
 });
 ////////////////////////
+
+router.get('/:id', async (req, res) => {
+    const recipeId = req.params.id;
+
+    const recipe = await recipeService.getRecipeById(recipeId);
+    const ingredient = await recipeService.getIngredients(recipeId);
+    // categoryService.GetCategoryByRecipeId
+
+    res.render('randomRecipe', {
+        recipe: recipe,
+        ingredient: ingredient,
+    });
+
+
+
+})
 
 
 

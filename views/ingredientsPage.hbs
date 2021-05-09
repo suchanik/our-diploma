@@ -6,7 +6,6 @@
         <div style="margin-bottom: 0.5rem " class="container">
             <h2>Wyszukaj przepisy po składnikach</h2>
             <div class="multi_select_box">
-                <!--                main.js  linijka: 54-->
                 <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
                         data-selected-text-format="count > 3" multiple>
                     {{#each ingredients}}
@@ -14,68 +13,15 @@
                     {{/each}}
                 </select>
             </div>
-            <button type="submit" id="show-recipes-by-ingredients-btn" style="margin-top: 20px;">Szukaj przepisów</button>
+            <button type="submit" id="show-recipes-by-ingredients-btn" style="margin-top: 20px;">Szukaj przepisów
+            </button>
         </div>
-
     </section>
 
-
-<!--    <section id="category">-->
-<!--        <div style="margin-top: 0;" class="container">-->
-<!--            <div class="multi_select_box">-->
-<!--                <select class="category-select w-100" id="category-select" data-live-search="true"-->
-<!--                        data-selected-text-format="count > 3" multiple>-->
-<!--                    {{#each category}}-->
-<!--                        <option value="{{this.id_category}}">{{this.name}}</option>-->
-<!--                    {{/each}}-->
-<!--                </select>-->
-<!--            </div>-->
-<!--            <button type="submit" id="show-recipes-by-ingredients-btn">Szukaj przepisów</button>-->
-<!--        </div>-->
-
-<!--    </section>-->
-
-<!--    <div class="alert alert-danger" id="recipes-error-alert" hidden>-->
-
-<!--    </div>-->
-
-<!--    <ul id="rendered_CRecipes-list">-->
-
-<!--    </ul>-->
-
-    <div class="alert alert-danger" id="recipes-error-alert" hidden>
-
-    </div>
-
-    <ul id="rendered_recipes-list">
-
-    </ul>
-
-
+    <div class="alert alert-danger" id="recipes-error-alert" hidden> </div>
+    <ul id="rendered_recipes-list"></ul>
 </div>
 
-
 <script src="/javascripts/main.js"></script>
+
 </body>
-
-
-<!--<section id="type">-->
-<!--    <h4>Pokaz przepisy po kategori</h4>-->
-<!--    <select id="types-select" multiple>-->
-        <!--        {{#each ingredients}}-->
-<!--            <option value="{{this.ID_ingredient}}">{{this.ing_name}}</option>-->
-        <!--        {{/each}}-->
-<!--    </select>-->
-
-<!--    <label for="1">fit</label>-->
-<!--    <input type="checkbox" id="2" name="2">-->
-<!--    <label for="2">kuchnia francuska</label>-->
-<!--    <input type="checkbox" id="3" name="3">-->
-<!--    <label for="3">wegetariańskie</label>-->
-<!--    <input type="checkbox" id="4" name="4">-->
-<!--    <label for="4">kuchnia włoska</label>-->
-
-<!--    <button type="submit">Pokaż przepisy</button>-->
-
-<!--</section>-->
-
