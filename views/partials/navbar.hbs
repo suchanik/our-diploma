@@ -37,7 +37,7 @@
         <a href="/top" title="Top przepisy">Top</a>
         <a href="/ingredients" title="Wyszukaj przepisy po składnikach">Składniki</a>
         <a href="/category" title="Rodzaje kuchni">Kategorie</a>
-        <a href="/randomRecipe" title="Losuj przepis">Losuj </a>
+        <a href="/recipes/" onclick="this.href=this.href.split('?')[0]+(Math.floor(Math.random() * 8) + 1)" title="Losuj przepis">Losuj </a>
 
         {{#if session.loggedin}}
             <div class="iconWrapper">

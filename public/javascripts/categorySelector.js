@@ -25,17 +25,6 @@ const renderErrorMsg = msg => {
         .innerHTML(msg)
         .prop("hidden", false);
 }
-//
-// //losowy przepis
-// const renderSelectedRecipes = recipes => {
-//     const $list = $("#rendered_recipes-list");
-//     $list.html("")
-//
-//     recipes.forEach(recipe => {
-//         $list.append(`<li> <a href="/randomRecipe" >${recipe.name}</a> </li>`)
-//     })
-//
-// }
 
 const categorySelectedRecipes = recipes => {
     const $list = $("#rendered_CRecipes-list");
