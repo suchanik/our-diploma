@@ -88,8 +88,7 @@ router.post("/addUser",  (req, res) => {
       return res.status(400).render('register', {
         message: 'Proszę wypełnić wszystkie pola'
       })
-    }
-    if (error) {
+    }if (error) {
       return res.render('register',{
         message: 'Już istnieje użytkownik o takim loginie lub mailu.'
       });

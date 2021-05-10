@@ -31,8 +31,8 @@
             <h2>Wyszukaj przepisy po składnikach</h2>
             <div class="multi_select_box">
                 <!--                main.js  linijka: 54-->
-                <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
-                        data-selected-text-format="count > 3" multiple>
+                <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true" title="Nie wybrano żadnych składników"
+                        data-selected-text-format="count > 3" data-count-selected-text ="Wybrano {0}" multiple>
                     {{#each ingredients}}
                         <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
                     {{/each}}

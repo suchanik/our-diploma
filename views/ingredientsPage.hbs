@@ -1,0 +1,28 @@
+<body>
+{{> navbar}}
+
+<div class="center">
+    <section id="ingredient">
+        <div style="margin-bottom: 0.5rem " class="container">
+            <h2>Wyszukaj przepisy po składnikach</h2>
+            <div class="multi_select_box">
+                <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true" title="Nie wybrano żadnych składników"
+                        data-selected-text-format="count > 3" data-count-selected-text ="Wybrano {0}"
+                        noneResultsText='Nie ma takiego składnika, spróbuj wpisać inaczej' multiple>
+                    {{#each ingredients}}
+                        <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <button type="submit" id="show-recipes-by-ingredients-btn" style="margin-top: 20px;">Szukaj przepisów
+            </button>
+        </div>
+    </section>
+
+    <div class="alert alert-danger" id="recipes-error-alert" hidden> </div>
+    <ul id="rendered_recipes-list"></ul>
+</div>
+
+<script src="/javascripts/main.js"></script>
+
+</body>

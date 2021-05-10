@@ -4,10 +4,10 @@ const connection = require("../config/db_config")
 const getIngredientsByRecipeId = recipeId => {
     return new Promise(((resolve, reject) => {
         connection.query(
-            "select ingredients.ID_ingredient as id, ing_name, id_unit\n" +
+            "SELECT ingredients.ID_ingredient as id, ing_name, id_unit\n" +
             "from ingredients\n" +
             "inner join `recipe_ingredient` on ingredients.ID_ingredient = `recipe_ingredient`.ID_ingredient\n" +
-            "where `recipe_ingredient`.ID_recipe = ?;",[recipeId], function (error, results, fields) {
+            "WHERE `recipe_ingredient`.ID_recipe = ?;",[recipeId], function (error, results, fields) {
                 if (error) {
                     console.log(results);
                     return reject(error);
@@ -40,9 +40,9 @@ const getRecipesByRecipe_ingredient = ingredientIDs => {
 const getCategoriesByRecipeId = categoryId => {
     return new Promise(((resolve, reject) => {
         connection.query(
-            "select categories.id_category as id, name from categories" +
+            "SELECT categories.id_category as id, name from categories" +
             "left join recipe_category rt on categories.id_category = rt.id_category" +
-            "where rt.id_recipe = ?;",[categoryId], function (error, results, fields) {
+            "WHERE rt.id_recipe = ?;",[categoryId], function (error, results, fields) {
                 if (error) {
                     console.log(results);
                     return reject(error);
@@ -56,7 +56,7 @@ const getCategoriesByRecipeId = categoryId => {
 const getRecipesByRecipe_category = rec_cat => {
     return new Promise((resolve, reject) => {
         connection.query(
-            'select distinct id_recipe as id, name from recipes natural join recipe_category where id_category in (?);',[rec_cat], function (error, results, fields) {
+            'SELECT distinct id_recipe as id, name from recipes natural join recipe_category WHERE id_category in (?);',[rec_cat], function (error, results, fields) {
 
                 if (error) {
                     console.log(results);
@@ -68,9 +68,9 @@ const getRecipesByRecipe_category = rec_cat => {
     })
 }
 
-const getRecipeById = id => {
+const getRecipeById = idRecipe => {
     return new Promise((resolve, reject) => {
-        connection.query('select * from recipes where id_recipe = ?', [id], ((err, result, fields) => {
+        connection.query('SELECT * from recipes WHERE id_recipe = ?', [idRecipe], ((err, result, fields) => {
             if (err) {
                 console.log(result);
                 return reject(error);
@@ -83,7 +83,7 @@ const getRecipeById = id => {
 
 const getIngredients = id => {
     return new Promise((resolve, reject) => {
-        connection.query('select distinct * from ingredients natural join recipe_ingredient where id_recipe = ?',[id], ((err, result, fields) => {
+        connection.query('SELECT distinct * from ingredients natural join recipe_ingredient WHERE id_recipe = ?',[id], ((err, result, fields) => {
             if (err) {
                 console.log(result);
                 return reject(error);

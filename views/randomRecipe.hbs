@@ -19,12 +19,18 @@
             <img src="https://cdn.aniagotuje.com/pictures/articles/2020/01/1968771-v-1500x1500.jpg"
                  class="img-thumbnail">
             <div id="rateRecipe">
-                <h6> Oceń przepis!</h6>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
+                <h5 style="margin-bottom: 0;"> Oceń przepis!</h5>
+                <div id="star-avg">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    {{#each rating}}
+                        <h5> {{this.avg_rating}}</h5>
+                    {{/each}}
+                </div>
+
             </div>
         </div>
 
@@ -40,14 +46,10 @@
         <h5>Komentarze</h5>
         <input>
         <button >Dodaj komentarz</button>
+        {{#each comment}}
+            <li> {{this.login}} : {{this.description}}</li>
+        {{/each}}
     </div>
-
-
 </div>
-
-<div class="center">
-</div>
-
-<script src="/javascripts/main.js"></script>
 </body>
 

@@ -44,3 +44,13 @@ input{
     border-style: none;
     width: 20%;
 }
+
+#star-avg{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#star-avg h5{
+    margin-left: 1rem;
+}
