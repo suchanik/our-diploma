@@ -94,6 +94,19 @@ const getIngredients = id => {
     })
 }
 
+const getLast3Recipes = () =>{
+    return new Promise((resolve, reject) => {
+        connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;', ((err, result, fields) => {
+            if (err) {
+                console.log(result);
+                return reject(error);
+            }
+
+            resolve(result);
+        }))
+    })
+}
+
 
 
 module.exports = {
@@ -103,4 +116,5 @@ module.exports = {
     getRecipesByRecipe_category,
     getRecipeById,
     getIngredients,
+    getLast3Recipes,
 }

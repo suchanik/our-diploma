@@ -2,54 +2,51 @@
 
 {{> navbar}}
 
-<div class="center">
-    <div class="container">
+<div class="container">
+    <section class="top-recipes">
         <div>
-            <h2 class="background__color__top" >Co nowego?</h2>
+            <h2 class="background__color__top">Co nowego?</h2>
         </div>
-        <div class="row">
-            <div class="col-12 col-md-4">
-                <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                     class="img-fluid">
-                <figcaption>Makaron</figcaption>
-            </div>
-            <div class="col-6 col-md-4">
-                <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                     class="img-fluid">
-                <figcaption>Makaron</figcaption>
-            </div>
-            <div class="col-6 col-md-4">
-                <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                     class="img-fluid">
-                <figcaption>Makaron</figcaption>
-            </div>
-        </div>
-
-    </div>
-    <section id="ingredient">
         <div class="container">
-            <h2>Wyszukaj przepisy po składnikach</h2>
-            <div class="multi_select_box">
-                <!--                main.js  linijka: 54-->
-                <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true" title="Nie wybrano żadnych składników"
-                        data-selected-text-format="count > 3" data-count-selected-text ="Wybrano {0}" multiple>
-                    {{#each ingredients}}
-                        <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
-                    {{/each}}
-                </select>
+            <div class="row">
+                {{#each lastRecipes}}
+                    <div class="col-sm-4">
+                        <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
+                             class="img-fluid">
+                        <figcaption>{{this.name}}</figcaption>
+                    </div>
+                {{/each}}
             </div>
-            <button type="submit" id="show-recipes-by-ingredients-btn">Szukaj przepisów</button>
         </div>
-
     </section>
 
-    <div class="alert alert-danger" id="recipes-error-alert" hidden>
 
+</div>
+<section id="ingredient">
+    <div style="margin-top: 4rem;" class="container">
+        <h2>Wyszukaj przepisy po składnikach</h2>
+        <div class="multi_select_box">
+            <!--                main.js  linijka: 54-->
+            <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
+                    title="Nie wybrano żadnych składników"
+                    data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}" multiple>
+                {{#each ingredients}}
+                    <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <button type="submit" id="show-recipes-by-ingredients-btn">Szukaj przepisów</button>
     </div>
 
-    <ul id="rendered_recipes-list">
+</section>
 
-    </ul>
+<div class="alert alert-danger" id="recipes-error-alert" hidden>
+
+</div>
+<div>
+    <ul style="margin: .5rem 6rem;" id="rendered_recipes-list"></ul>
+</div>
+
 
 </div>
 

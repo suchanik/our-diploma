@@ -5,6 +5,7 @@ const recipeService = require("../service/RecipeService");
 const commentService = require("../service/CommentService")
 const ratingService = require("../service/RatingService")
 
+
 //wyszukiwanie po składnikach
 router.post('/all_recipes_by_ingredients', async (req, res, next) => {
     const ingrediendsIDs = req.body.ingrediendsIDs;
@@ -65,7 +66,6 @@ router.get('/randomRecipe', (req, res, next) => {
 
 router.get('/:id', async (req, res) => {
     const recipeId = req.params.id;
-    const userId = req.params.id;
 
     const recipe = await recipeService.getRecipeById(recipeId);
     const ingredient = await recipeService.getIngredients(recipeId);
@@ -87,6 +87,8 @@ router.post('/:id', async (req, res, next) => {
 
     res.json(addComment);
 });
+
+
 
 
 module.exports = router;

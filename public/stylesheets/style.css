@@ -2,39 +2,11 @@ body {
   font-family: 'Rhodium Libre', serif !important;
 }
 
-/*@media (min-width: 1050px) {*/
-
-/*}*/
-/*@media (max-width: 1050px) {*/
-/*  body{*/
-/*    width: 70%;*/
-/*  }*/
-/*}*/
-/*@media (max-width: 750px) {*/
-/*  body{*/
-/*    width: 60%;*/
-/*  }*/
-/*}*/
-/*@media (max-width: 300px) {*/
-/*  body{*/
-/*    width: 30%;*/
-/*  }*/
-/*}*/
-
-@media (orientation: portrait) {
-
-}
-
 .center{
   padding: 3rem;
   /*background-color: beige;*/
   /*height: 100%;*/
   z-index: -1;
-}
-
-.container{
-  /*text-align: center;*/
-  padding-bottom: 6rem;
 }
 
 h2{

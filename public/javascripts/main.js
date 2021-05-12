@@ -31,7 +31,14 @@ const renderSelectedRecipes = recipes => {
     $list.html("")
 
     recipes.forEach(recipe => {
-        $list.append(`<li> <a href=/recipes/${recipe.id} >${recipe.name}</a> </li>`)
+        $list.append(`<div class="col-sm-4" >
+                        <a href=/recipes/${recipe.id} >
+                            <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
+                                 class="img-fluid">
+                            <figcaption>${recipe.name}</figcaption>
+                        </a> 
+                    </div>
+                   `)
     })
 
 }

@@ -1,22 +1,51 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 const connection = require("../config/db_config")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
   connection.query('SELECT * FROM ingredients ORDER BY ing_name;',function (error, results, fields) {
-    if(error){
-      console.log("error");
-    }else{
-      console.log(results)
-      res.render("main", {
-        title: "Epapu",
-        ingredients: results
-      })
-    }
+    connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;', function (error, result, fields)
+    {
+      if (error) {
+        console.log("error");
+      } else {
+        console.log(results)
+        res.render("main", {
+          title: "Epapu",
+          ingredients: results,
+          lastRecipes: result,
+        })
+      }
+    })
   });
+  // connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;',function (error, results, fields) {
+  //   if(error){
+  //     console.log("error");
+  //   }else{
+  //     console.log(results)
+  //     res.render("main", {
+  //       title: "Epapu",
+  //       lastRecipes: results
+  //     })
+  //   }
+  // });
 });
+
+// router.get("/", ((req, res) => {
+//   connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;',function (error, results, fields) {
+//     if(error){
+//       console.log("error");
+//     }else{
+//       console.log(results)
+//       res.render("main", {
+//         lastRecipes: results,
+//       })
+//     }
+//   });
+// }))
+
 router.get('/ingredients', function(req, res, next) {
 
   connection.query('SELECT * FROM ingredients ORDER BY ing_name;',function (error, results, fields) {
@@ -32,9 +61,6 @@ router.get('/ingredients', function(req, res, next) {
   });
 });
 
-router.all("/", ((req, res) => {
-    getAllIngredients();
-}))
 
 router.all("ingredients", ((req, res) => {
     getAllIngredients();
@@ -55,6 +81,22 @@ router.get('/category', function(req, res, next) {
       res.render("categoryPage", {
         title: "Epapu",
         category: results
+      })
+    }
+  });
+});
+
+router.get('/top', function (req,res) {
+  connection.query('SELECT ROUND(AVG(value_recipe),1) as average, recipes.name, recipes.id_recipe from rating ' +
+      'inner join recipes on recipes.id_recipe = rating.id_recipe ' +
+      'group by name order by average desc;',function (error, results, fields) {
+    if(error){
+      console.log("error");
+    }else{
+      console.log(results)
+      res.render("topRecipesPage", {
+        title: "Epapu",
+        top: results,
       })
     }
   });
