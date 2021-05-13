@@ -44,6 +44,10 @@ const renderSelectedRecipes = recipes => {
 }
 
 $(document).ready(() => {
-    $(".ingredients-select").selectpicker();
+    $(".ingredients-select").selectpicker({
+        locale: {
+            statusNoResults: 'Brak wyników, spróbuj wpisać inaczej'
+        }
+    });
 })
 

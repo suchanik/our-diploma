@@ -17,8 +17,8 @@ getCommentsByRecipeId = id =>{
     })
 }
 
-addComment = description =>{
-    connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
+addComment = id =>{
+    connection.query("select name from recipes where id_user = ?", [id], ((err, result, fields) =>  {
         const data = result.shift();
         res.render('randomRecipe', {
             name: data.name,

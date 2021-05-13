@@ -2,7 +2,7 @@ const connection = require("../config/db_config")
 
 //wyszukiwanie po składnikach
 const getIngredientsByRecipeId = recipeId => {
-    return new Promise(((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         connection.query(
             "SELECT ingredients.ID_ingredient as id, ing_name, id_unit\n" +
             "from ingredients\n" +
@@ -15,7 +15,7 @@ const getIngredientsByRecipeId = recipeId => {
 
                 resolve(results);
             });
-    }))
+    })
 }
 
 const getRecipesByRecipe_ingredient = ingredientIDs => {

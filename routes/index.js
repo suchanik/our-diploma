@@ -20,31 +20,7 @@ router.get('/', function(req, res, next) {
       }
     })
   });
-  // connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;',function (error, results, fields) {
-  //   if(error){
-  //     console.log("error");
-  //   }else{
-  //     console.log(results)
-  //     res.render("main", {
-  //       title: "Epapu",
-  //       lastRecipes: results
-  //     })
-  //   }
-  // });
 });
-
-// router.get("/", ((req, res) => {
-//   connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;',function (error, results, fields) {
-//     if(error){
-//       console.log("error");
-//     }else{
-//       console.log(results)
-//       res.render("main", {
-//         lastRecipes: results,
-//       })
-//     }
-//   });
-// }))
 
 router.get('/ingredients', function(req, res, next) {
 
