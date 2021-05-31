@@ -23,5 +23,5 @@ const updateUserPassword = (id, password) => {
 
 
 module.exports = {
-    updateUserPassword
+    updateUserPassword,
 }

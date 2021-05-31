@@ -37,7 +37,7 @@ router.post('/editProfile', async (req, res, next) => {
     try {
         const {userId, password} = req.body;
         await userService.updateUserPassword(userId, password);
-        res.json("Udao sie zmienic haslo");
+        res.json("Udało sie zmienic haslo");
 
     } catch(err) {
         res.status(500).send()

@@ -16,7 +16,7 @@
         </div>
 
         <div class="right">
-            <img src="https://cdn.aniagotuje.com/pictures/articles/2020/01/1968771-v-1500x1500.jpg"
+            <img src="https://bi.im-g.pl/im/ba/85/19/z26760122ICR,Makaron-z-czosnkiem-i-natka.jpg"
                  class="img-thumbnail">
             <div id="rateRecipe">
                 <h5 style="margin-bottom: 0;"> Oceń przepis!</h5>
@@ -44,12 +44,15 @@
     </div>
     <div style="margin-top: 4rem;" class="container left" >
         <h5>Komentarze</h5>
-        <input>
-        <button >Dodaj komentarz</button>
+        <input id="userId" type="hidden" value={{session.userId}}>
+        <input id="recipeId" type="hidden" value={{recipe.id_recipe}}>
+        <input type="description" id="description" name="description">
+        <button class="button" id="add-description-btn" type="submit">Dodaj komentarz</button>
         {{#each comment}}
-            <li> {{this.login}} : {{this.description}}</li>
+            <div> {{this.login}} : {{this.description}}</div>
         {{/each}}
     </div>
 </div>
+<script src="/javascripts/addComment.js"></script>
 </body>
 

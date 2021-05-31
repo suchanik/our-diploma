@@ -81,15 +81,15 @@ router.get('/:id', async (req, res) => {
     });
 })
 
-router.post('/:id', async (req, res, next) => {
-    const recipeId = req.params.id;
-    const description = req.body.description;
-    const addComment = await commentService.addComment(recipeId)
-
-    res.json(addComment);
+router.post('/addComment', async (req, res, next) => {
+    try{
+        const {userId, recipeId, description} = req.body;
+        await commentService.addComment(userId,recipeId,description)
+        res.json("Udało sie dodać komentarz");
+    }catch (err){
+        res.status(500).send()
+        next(err)
+    }
 });
-
-
-
 
 module.exports = router;
