@@ -78,4 +78,8 @@ router.get('/top', function (req,res) {
   });
 });
 
+router.get('/addRecipe',  (req, res) => {
+  res.render('addRecipe');
+});
+
 module.exports = router;

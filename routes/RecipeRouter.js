@@ -103,4 +103,14 @@ router.post('/addRate', async (req, res, next) => {
     }
 });
 
+router.get('/addRecipe', (req, res, next) => {
+
+    connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
+        const data = result.shift();
+        res.render('addRecipe', {
+            name: data.name,
+        });
+    }))
+});
+
 module.exports = router;
