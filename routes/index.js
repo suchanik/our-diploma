@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require("../config/db_config")
+const ingredientsService = require("../service/IngredientsService")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -78,8 +79,13 @@ router.get('/top', function (req,res) {
   });
 });
 
-router.get('/addRecipe',  (req, res) => {
-  res.render('addRecipe');
+router.get('/addRecipe', async  (req, res) => {
+  let ingredients = await ingredientsService.getAllIngredients();
+
+  res.render('addRecipe', {
+    ingredients ,
+
+  });
 });
 
 module.exports = router;
