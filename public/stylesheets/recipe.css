@@ -4,17 +4,17 @@
     justify-content: space-between;
 }
 
-.left{
-    display: flex;
-    flex-direction: column;
-}
+/*.left{*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
-.right{
-    margin-right: 8rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/*.right{*/
+/*    margin-right: 8rem;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*}*/
 
 #dish h5{
     margin: 2rem 0;
@@ -28,11 +28,39 @@ i{
     margin: .3rem;
 }
 
+.rating{        /*do zaznaczania gwiazdek od lewej do prawej*/
+    display: inline-block;
+    /*display: flex;*/
+    flex-wrap: nowrap;
+    align-items: center;
+}
+.rating input{
+    display: none;
+}
+.rating label{
+    float: right;
+    font-size: 30px;
+    padding: 5px;
+    color: #4444448a;
+    transition: all 0.2s ease;
+}
+input:not(:checked) ~ label:hover,
+input:not(:checked) ~ label:hover~ label{
+    color: #6FCF97;
+}
+input:checked ~ label{
+    color: #6FCF97;
+}
+input#rate-5:checked ~ label{   /*do poświetlania gwiazdek gdy jest 5*/
+    color: #82d6a5;
+    text-shadow: 0 0 20px #6FCF97;
+}
+
 #recipeDescription{
     margin-right: 16rem;
 }
 
-input{
+#comments input{
     margin-top: 1rem;
     height: 80px;
     width: 80%;
