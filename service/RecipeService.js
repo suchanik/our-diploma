@@ -108,6 +108,33 @@ const getLast3Recipes = () =>{
 }
 
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+//TO NIE BANGLA, przepis sie dodaje ale jakie skladniki do niego to juz nie
+// trzeba to najpierw naprawic ale wrzucam zebym nie zapomnial
+
+const addNewRecipe= (title, ingredientsIds, description, userId) => {
+    // return new Promise((resolve, reject) => {
+    //     connection.query("insert into recipes(name, description, id_user) " +
+    //         "values(?, ?, ?)", [title, description, userId], (err, result) => {
+    //
+    //         if (err) {
+    //             reject(err);
+    //         }
+    //         resolve(result.insertId)
+    //     })
+    // }).then(recipeId => {
+    //     let values = [...ingredientsIds].map(ingredientId => ([ingredientId, recipeId]));
+    //     connection.query("insert into recipe_ingredient(id_recipe, id_ingredient)" +
+    //         "values ?", values, err => {
+    //         if (err) throw err;
+    //
+    //         return recipeId;
+    //     });
+    // })
+
+}
+
+
 
 module.exports = {
     getIngredientsByRecipeId,
@@ -117,4 +144,5 @@ module.exports = {
     getRecipeById,
     getIngredients,
     getLast3Recipes,
+    addNewRecipe,
 }

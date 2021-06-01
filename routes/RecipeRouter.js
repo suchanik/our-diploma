@@ -4,7 +4,8 @@ const connection = require("../config/db_config")
 
 const recipeService = require("../service/RecipeService");
 const commentService = require("../service/CommentService")
-const ratingService = require("../service/RatingService")
+const ratingService = require("../service/RatingService");
+const ingredientsService = require("../service/IngredientsService");
 
 
 //wyszukiwanie po składnikach
@@ -28,30 +29,30 @@ router.post('/all_recipes_by_category', async (req, res, next)=>{
     }
 });
 
+router.get('/addRecipe',  async (req, res, next) => {
+
+    let ingredients = await ingredientsService.getAllIngredients();
 
 
-const filterRecipes =  async (recipes, ingredientsIDs) => {
+    connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
+    //     const data = result.shift();
+        res.render('addRecipe', {
+            ingredients,
 
-    const recipeIngredients = [];
+        });
+    }))
+});
+
+router.post('/addRecipe',  async (req, res, next) => {
+    const {recipeName, ingredientsIds, description} = req.body;
+    const {userId} = req.session;
+
+    let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, description, userId);
+
+    res.redirect(`/recipes/${recipeId}`)
+});
 
 
-    for (const recipe of recipes) {
-        const ingredients = await recipeService.getIngredientsByRecipeId(recipe.id);
-
-        recipeIngredients.push({...recipe, ingredients})
-    }
-
-    const filteredRecipes = recipeIngredients.filter(elem => {
-        return elem.ingredients.every(i => ingredientsIDs.includes(i.id.toString()));
-    });
-
-    console.log(filteredRecipes)
-
-    return recipes.filter(recipe => filteredRecipes
-                                        .map(recipeWithIngredient => recipeWithIngredient.id)
-                                        .includes(recipe.id)
-    );
-}
 
 /////////////////////
 router.get('/randomRecipe', (req, res, next) => {
@@ -65,21 +66,7 @@ router.get('/randomRecipe', (req, res, next) => {
 });
 ////////////////////////
 
-router.get('/:id', async (req, res) => {
-    const recipeId = req.params.id;
 
-    const recipe = await recipeService.getRecipeById(recipeId);
-    const ingredient = await recipeService.getIngredients(recipeId);
-    const showComment = await commentService.getCommentsByRecipeId(recipeId);
-    const showAvgRating = await ratingService.getRatingByRecipeId(recipeId);
-
-    res.render('randomRecipe', {
-        recipe: recipe,
-        ingredient: ingredient,
-        comment: showComment,
-        rating: showAvgRating,
-    });
-})
 
 router.post('/addComment', async (req, res, next) => {
     try{
@@ -103,14 +90,44 @@ router.post('/addRate', async (req, res, next) => {
     }
 });
 
-router.get('/addRecipe', (req, res, next) => {
+const filterRecipes =  async (recipes, ingredientsIDs) => {
 
-    connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
-        const data = result.shift();
-        res.render('addRecipe', {
-            name: data.name,
-        });
-    }))
-});
+    const recipeIngredients = [];
+
+
+    for (const recipe of recipes) {
+        const ingredients = await recipeService.getIngredientsByRecipeId(recipe.id);
+
+        recipeIngredients.push({...recipe, ingredients})
+    }
+
+    const filteredRecipes = recipeIngredients.filter(elem => {
+        return elem.ingredients.every(i => ingredientsIDs.includes(i.id.toString()));
+    });
+
+    console.log(filteredRecipes)
+
+    return recipes.filter(recipe => filteredRecipes
+        .map(recipeWithIngredient => recipeWithIngredient.id)
+        .includes(recipe.id)
+    );
+}
+
+
+router.get('/:id', async (req, res) => {
+    const recipeId = req.params.id;
+
+    const recipe = await recipeService.getRecipeById(recipeId);
+    const ingredient = await recipeService.getIngredients(recipeId);
+    const showComment = await commentService.getCommentsByRecipeId(recipeId);
+    const avgRating = await ratingService.getRatingByRecipeId(recipeId);
+
+    res.render('randomRecipe', {
+        recipe: recipe,
+        ingredient: ingredient,
+        comment: showComment,
+        rating: avgRating,
+    });
+})
 
 module.exports = router;
