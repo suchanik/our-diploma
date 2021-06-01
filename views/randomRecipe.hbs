@@ -5,7 +5,7 @@
 
 <div class="center">
     <div class="container" id="dish">
-        <div class="left">
+        <div class="container">
             <h2 class="background__color">{{recipe.name}}</h2>
             <div class="recipeDescription">
                 <h5>Składniki: </h5>
@@ -15,22 +15,28 @@
             </div>
         </div>
 
-        <div class="right">
+        <div class="container">
             <img src="https://bi.im-g.pl/im/ba/85/19/z26760122ICR,Makaron-z-czosnkiem-i-natka.jpg"
                  class="img-thumbnail">
-            <div id="rateRecipe">
+            <div id="container">
                 <h5 style="margin-bottom: 0;"> Oceń przepis!</h5>
-                <div id="star-avg">
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    <i class="far fa-star"></i>
-                    {{#each rating}}
-                        <h5> {{this.avg_rating}}</h5>
-                    {{/each}}
+                <div style="display: flex">
+                    <div class="rating">
+                        <input type="radio" name="rate" id="rate-5" value="5">
+                        <label for="rate-5" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-4" value="4">
+                        <label for="rate-4" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-3" value="3">
+                        <label for="rate-3" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-2" value="2">
+                        <label for="rate-2" class="fas fa-star"></label>
+                        <input type="radio" name="rate" id="rate-1" value="1">
+                        <label for="rate-1" class="fas fa-star"></label>
+                    </div>{{#each rating}}
+                    <h5 style="padding: 6px; margin: 0 0 0 .5rem;"> {{this.avg_rating}}</h5>
+                {{/each}}
+                    <h5 id="yourValue">twoja ocena</h5>
                 </div>
-
             </div>
         </div>
 
@@ -42,11 +48,11 @@
             {{recipe.description}}
         </div>
     </div>
-    <div style="margin-top: 4rem;" class="container left" >
+    <div style="margin-top: 4rem;" class="container left" id="comments" >
         <h5>Komentarze</h5>
         <input id="userId" type="hidden" value={{session.userId}}>
         <input id="recipeId" type="hidden" value={{recipe.id_recipe}}>
-        <input type="description" id="description" name="description">
+        <input type="description" id="description" name="description" placeholder="Napisz co myślisz o tym przepisie...">
         <button class="button" id="add-description-btn" type="submit">Dodaj komentarz</button>
         {{#each comment}}
             <div> {{this.login}} : {{this.description}}</div>
@@ -54,5 +60,6 @@
     </div>
 </div>
 <script src="/javascripts/addComment.js"></script>
+<script src="/javascripts/starRating.js"></script>
 </body>
 

@@ -63,7 +63,7 @@ router.get('/category', function(req, res, next) {
 });
 
 router.get('/top', function (req,res) {
-  connection.query('SELECT ROUND(AVG(value_recipe),1) as average, recipes.name, recipes.id_recipe from rating ' +
+  connection.query('SELECT ROUND(AVG(rate),1) as average, recipes.name, recipes.id_recipe from rating ' +
       'inner join recipes on recipes.id_recipe = rating.id_recipe ' +
       'group by name order by average desc;',function (error, results, fields) {
     if(error){

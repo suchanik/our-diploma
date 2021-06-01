@@ -92,4 +92,15 @@ router.post('/addComment', async (req, res, next) => {
     }
 });
 
+router.post('/addRate', async (req, res, next) => {
+    try{
+        const {userId, recipeId, rate} = req.body;
+        await ratingService.addRate(userId,recipeId,rate)
+        res.json("Udało sie dodać ocenę");
+    }catch (err){
+        res.status(500).send()
+        next(err)
+    }
+});
+
 module.exports = router;
