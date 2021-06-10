@@ -1,45 +1,47 @@
-<link rel="stylesheet" href="/stylesheets/recipe.css" type="text/css">
+<link rel="stylesheet" href="/stylesheets/addRecipe.css" type="text/css">
 
 <body>
 {{> navbar}}
 
-<div class="container">
+<div style="margin-left: 23rem;" class="container">
     <form action="/recipes/addRecipe" method="post">
-        <div class="row mb-3">
+        <div class="row mb-3 " id="recipe-name">
             <input type="recipeName" id="recipeName" name="recipeName" placeholder="Dodaj tytuł">
         </div>
 
         <div class="row mb-3">
-            <div class="col-7">
+            <div class="col-7" style="padding: 0;" >
                 <h5>Dodaj składniki: </h5>
-                <div style="margin-top: 0" class="multi_select_box">
-                    <select class="ingredients-select w-100" id="ingredients-select" name="ingredientsIds" data-live-search="true"
-                            title="Nie wybrano żadnych składników"
-                            data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}"
-                            noneResultsText='Nie ma takiego składnika, spróbuj wpisać inaczej'
-                            multiple>
+                <div class="multi_select_box" style="margin: 1rem 0 15rem 0;">
+                    <select class="ingredients-select w-100" name="ingredientsIds" id="ingredients-select" data-live-search="true" title="Nie wybrano żadnych składników"
+                            data-selected-text-format="count > 3" data-count-selected-text ="Wybrano {0}"
+                            noneResultsText='Nie ma takiego składnika, spróbuj wpisać inaczej' multiple>
                         {{#each ingredients}}
                             <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
                         {{/each}}
                     </select>
                 </div>
             </div>
-            <div class="col-5">
-                <h6 style="margin-top: 1rem">Dodaj zdjęcie</h6>
+            <div class="col-2" id="add-picture">
+                <h6>Dodaj zdjęcie</h6>
             </div>
         </div>
 
 
         <div class="row mb-3">
             <h5>Opis wykonania</h5>
+            <div class="w-100"></div>
             <div class="row form-row" id="comments">
-                <textarea id="description" name="description"> </textarea>
+                <textarea rows="7" cols="80" id="description" name="description"> </textarea>
             </div>
         </div>
 
-        <div class="row mb-3">
+        <div style="margin-left: 25rem" class="row mb-3">
             <button class="button" id="add-recipe-btn" type="submit">Zapisz</button>
         </div>
     </form>
 
 </div>
+
+<script src="/javascripts/addRecipe.js"></script>
+</body>
