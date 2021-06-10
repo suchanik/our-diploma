@@ -1,0 +1,36 @@
+#recipe-name input{
+    border: 0px solid;
+    border-bottom: 4px solid #6FCF97;
+    margin-bottom: 2rem;
+}
+
+#add-ingredients h5{
+    margin-top: 0; !important;
+}
+
+#add-picture{
+    border: 4px solid #6FCF97;
+}
+#add-picture h6{
+    text-align: center;
+    padding-top: 3rem;
+}
+
+#comments{
+    border: 4px solid #6FCF97;
+}
+
+button{
+    margin: 2rem;
+    background-color: #6FCF97;
+    border-style: none;
+
+}
+
+/*::-webkit-input-placeholder {*/
+/*    text-align: center;*/
+/*}*/
+
+/*:-ms-input-placeholder {*/
+/*    text-align: center;*/
+/*}*/

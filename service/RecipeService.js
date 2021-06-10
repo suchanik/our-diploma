@@ -1,6 +1,6 @@
 const connection = require("../config/db_config")
 
-//wyszukiwanie po składnikach
+//wyszukiwanie składnikow po id przepisu
 const getIngredientsByRecipeId = recipeId => {
     return new Promise((resolve, reject) => {
         connection.query(
@@ -35,14 +35,14 @@ const getRecipesByRecipe_ingredient = ingredientIDs => {
     })
 }
 
-//Wyszukiwanie po kategoriach
+//Wyszukiwanie kategorii po id przepisu
 
-const getCategoriesByRecipeId = categoryId => {
+const getCategoriesByRecipeId = recipeId => {
     return new Promise(((resolve, reject) => {
         connection.query(
             "SELECT categories.id_category as id, name from categories" +
             "left join recipe_category rt on categories.id_category = rt.id_category" +
-            "WHERE rt.id_recipe = ?;",[categoryId], function (error, results, fields) {
+            "WHERE rt.id_recipe = ?;",[recipeId], function (error, results, fields) {
                 if (error) {
                     console.log(results);
                     return reject(error);
@@ -109,6 +109,29 @@ const getLast3Recipes = () =>{
 
 
 
+//dodawanie przepisu
+
+const addNewRecipe= (title, ingredientsIds, description, userId) => {
+    return new Promise((resolve, reject) => {
+        connection.query("insert into recipes(name, description, id_user) " +
+            "values(?, ?, ?)", [title, description, userId], (err, result) => {
+
+            if (err) {
+                reject(err);
+            }
+            resolve(result.insertId)
+        })
+    }).then(recipeId => {
+        let values = ([...ingredientsIds] || []).map(ingredientId => ([recipeId, ingredientId]));
+        connection.query("insert into recipe_ingredient (id_recipe, id_ingredient) values ?", [values], err => {
+            if (err) throw err;
+
+            return recipeId;
+        });
+    })
+}
+
+
 module.exports = {
     getIngredientsByRecipeId,
     getRecipesByRecipe_ingredient,
@@ -117,4 +140,5 @@ module.exports = {
     getRecipeById,
     getIngredients,
     getLast3Recipes,
+    addNewRecipe,
 }

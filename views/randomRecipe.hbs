@@ -32,10 +32,9 @@
                         <label for="rate-2" class="fas fa-star"></label>
                         <input type="radio" name="rate" id="rate-1" value="1">
                         <label for="rate-1" class="fas fa-star"></label>
-                    </div>{{#each rating}}
-                    <h5 style="padding: 6px; margin: 0 0 0 .5rem;"> {{this.avg_rating}}</h5>
-                {{/each}}
-                    <h5 id="yourValue">twoja ocena</h5>
+                    </div>
+                    <h5 style="padding: 6px; margin: 0 0 0 .5rem;"> {{rating}}</h5>
+<!--                    <h5 id="yourValue">twoja ocena</h5>-->
                 </div>
             </div>
         </div>
@@ -54,9 +53,13 @@
         <input id="recipeId" type="hidden" value={{recipe.id_recipe}}>
         <input type="description" id="description" name="description" placeholder="Napisz co myślisz o tym przepisie...">
         <button class="button" id="add-description-btn" type="submit">Dodaj komentarz</button>
-        {{#each comment}}
-            <div> {{this.login}} : {{this.description}}</div>
-        {{/each}}
+        <div class="container">
+            {{#each comment}}
+                <div class="col"> {{this.login}} </div>
+                <div class="col"> {{this.description}} </div>
+            {{/each}}
+
+        </div>
     </div>
 </div>
 <script src="/javascripts/addComment.js"></script>
