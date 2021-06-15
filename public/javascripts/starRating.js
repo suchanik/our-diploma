@@ -47,5 +47,3 @@ const options = {
 }
 
 $(".rating").rate(options);
-
-console.log('DUPA')
