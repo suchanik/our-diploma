@@ -9,7 +9,7 @@
             <div class="multi_select_box">
                 <select class="category-select w-100" id="category-select" data-live-search="true" title="Nie wybrano żadnej kategori"
                         data-selected-text-format="count > 2" data-count-selected-text ="Wybrano {0} kategorie" multiple>
-                    {{#each category}}
+                    {{#each categories}}
                         <option value="{{this.id_category}}">{{this.name}}</option>
                     {{/each}}
                 </select>

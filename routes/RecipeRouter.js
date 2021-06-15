@@ -39,14 +39,14 @@ router.get('/addRecipe',  async (req, res, next) => {
     }
     else {
         let ingredients = await ingredientsService.getAllIngredients();
-        let category = await categoryService.getAllCategory();
+        let categories = await categoryService.getAllCategories();
 
 
         connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
             //     const data = result.shift();
             res.render('addRecipe', {
                 ingredients,
-                category,
+                categories,
 
             });
         }))

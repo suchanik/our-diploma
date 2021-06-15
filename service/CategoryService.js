@@ -1,7 +1,7 @@
 const connection = require("../config/db_config")
 
 
-const getAllCategory = () => {
+const getAllCategories = () => {
     return new Promise(((resolve, reject) => {
         connection.query('SELECT * FROM categories ORDER BY name;', ((err, result, fields) => {
             if (err) {
@@ -15,5 +15,5 @@ const getAllCategory = () => {
 }
 
 module.exports = {
-    getAllCategory,
+    getAllCategories,
 }
