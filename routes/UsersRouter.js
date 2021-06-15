@@ -22,7 +22,7 @@ router.get('/profile', function (req, res, next) {
     connection.query('select email, login  from users where id_user = ?', [req.session.userId], ((err, result, fields) => {
         const data = result.shift();
         if (!data) {
-            res.render("/")
+            res.render("error")
         } else {
             res.render('userProfil', {
                 login: data.login,

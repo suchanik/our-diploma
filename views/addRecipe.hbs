@@ -12,12 +12,21 @@
         <div class="row mb-3">
             <div class="col-7" style="padding: 0;" >
                 <h5>Dodaj składniki: </h5>
-                <div class="multi_select_box" style="margin: 1rem 0 15rem 0;">
+                <div class="multi_select_box" style="margin: 1rem 0;">
                     <select class="ingredients-select w-100" name="ingredientsIds" id="ingredients-select" data-live-search="true" title="Nie wybrano żadnych składników"
                             data-selected-text-format="count > 3" data-count-selected-text ="Wybrano {0}"
                             noneResultsText='Nie ma takiego składnika, spróbuj wpisać inaczej' multiple>
                         {{#each ingredients}}
                             <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <h5>Dodaj kategorie: </h5>
+                <div class="multi_select_box" style="margin: 1rem 0;">
+                    <select class="category-select w-100" name="categoryIDs" id="category-select" data-live-search="true" title="Nie wybrano żadnej kategori"
+                            data-selected-text-format="count > 2" data-count-selected-text ="Wybrano {0} kategorie" multiple>
+                        {{#each category}}
+                            <option value="{{this.id_category}}">{{this.name}}</option>
                         {{/each}}
                     </select>
                 </div>

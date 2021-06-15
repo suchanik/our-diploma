@@ -107,12 +107,10 @@ const getLast3Recipes = () =>{
     })
 }
 
-
-
 //dodawanie przepisu
 
-const addNewRecipe= (title, ingredientsIds, description, userId) => {
-    return new Promise((resolve, reject) => {
+const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) => {
+    return new Promise( (resolve, reject) => {
         connection.query("insert into recipes(name, description, id_user) " +
             "values(?, ?, ?)", [title, description, userId], (err, result) => {
 
@@ -121,12 +119,26 @@ const addNewRecipe= (title, ingredientsIds, description, userId) => {
             }
             resolve(result.insertId)
         })
-    }).then(recipeId => {
+    }).then( recipeId => {
         let values = ([...ingredientsIds] || []).map(ingredientId => ([recipeId, ingredientId]));
-        connection.query("insert into recipe_ingredient (id_recipe, id_ingredient) values ?", [values], err => {
-            if (err) throw err;
 
-            return recipeId;
+        return new Promise(((resolve, reject) => {
+            connection.query("insert into recipe_ingredient (id_recipe, id_ingredient) values ?", [values], err => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(recipeId)
+            });
+        }));
+    }).then( recipeId => {
+        let values = ([...categoryIDs] || []).map(categoryID => ([recipeId, categoryID]));
+        return new Promise((resolve, reject) => {
+            connection.query("INSERT INTO recipe_category (id_recipe, id_category) values ?", [values], err => {
+                if (err) {
+                    reject(err);
+                }
+                resolve(recipeId)
+            })
         });
     })
 }

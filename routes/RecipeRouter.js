@@ -6,6 +6,7 @@ const recipeService = require("../service/RecipeService");
 const commentService = require("../service/CommentService")
 const ratingService = require("../service/RatingService");
 const ingredientsService = require("../service/IngredientsService");
+const categoryService = require("../service/CategoryService");
 
 
 //wyszukiwanie po składnikach
@@ -31,23 +32,32 @@ router.post('/all_recipes_by_category', async (req, res, next)=>{
 
 router.get('/addRecipe',  async (req, res, next) => {
 
-    let ingredients = await ingredientsService.getAllIngredients();
+    const {loggedIn} = req.session;
+
+    if (!loggedIn) {
+        res.render("error")
+    }
+    else {
+        let ingredients = await ingredientsService.getAllIngredients();
+        let category = await categoryService.getAllCategory();
 
 
-    connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
-    //     const data = result.shift();
-        res.render('addRecipe', {
-            ingredients,
+        connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
+            //     const data = result.shift();
+            res.render('addRecipe', {
+                ingredients,
+                category,
 
-        });
-    }))
+            });
+        }))
+    }
 });
 
 router.post('/addRecipe',  async (req, res, next) => {
-    const {recipeName, ingredientsIds, description} = req.body;
+    const {recipeName, ingredientsIds, categoryIDs, description} = req.body;
     const {userId} = req.session;
 
-    let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, description, userId);
+    let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, categoryIDs, description, userId);
 
     res.redirect(`/recipes/${recipeId}`)
 });
