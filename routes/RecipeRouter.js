@@ -66,13 +66,11 @@ router.post('/addRecipe',  async (req, res, next) => {
 
 /////////////////////
 router.get('/randomRecipe', (req, res, next) => {
-
-    connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
-        const data = result.shift();
-        res.render('randomRecipe', {
-            name: data.name,
-        });
-    }))
+    recipeService
+        .getRandomRecipeId()
+        .then(recipeId => {
+            res.redirect(`/recipes/${recipeId}`);
+        })
 });
 ////////////////////////
 

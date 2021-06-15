@@ -143,6 +143,19 @@ const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) =
     })
 }
 
+const getRandomRecipeId = () => {
+    return new Promise((resolve, reject) => {
+        connection.query('SELECT id_recipe FROM recipes ORDER BY RAND() LIMIT 1;', ((err, result, fields) => {
+            if (err || result.length === 0) {
+                console.log(result);
+                return reject(err);
+            }
+
+            resolve(result.shift().id_recipe);
+        }))
+    })
+}
+
 
 module.exports = {
     getIngredientsByRecipeId,
@@ -153,4 +166,5 @@ module.exports = {
     getIngredients,
     getLast3Recipes,
     addNewRecipe,
+    getRandomRecipeId,
 }

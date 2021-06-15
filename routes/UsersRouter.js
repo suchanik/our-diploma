@@ -70,7 +70,7 @@ router.post("/auth", function (req, res) {
                 })
             }
             if (isPasswordMatched) {
-                req.session.loggedin = true;
+                req.session.loggedIn = true;
                 req.session.name = name;
                 req.session.userId = storedUser.id_user;
                 res.status(200).redirect('/')
