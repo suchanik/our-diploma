@@ -17,21 +17,6 @@ router.get('/', async (req, res) => {
     })
 });
 
-router.get('/top', function (req,res) {
-    connection.query('SELECT ROUND(AVG(rate),1) as average, recipes.name, recipes.id_recipe from rating ' +
-        'inner join recipes on recipes.id_recipe = rating.id_recipe ' +
-        'group by name order by average desc;',function (error, results, fields) {
-        if(error){
-            console.log("error");
-        }else{
-            console.log(results)
-            res.render("topRecipesPage", {
-                title: "Epapu",
-                top: results,
-            })
-        }
-    });
-});
 
 
 

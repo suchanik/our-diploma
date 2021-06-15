@@ -99,7 +99,7 @@ const getLast3Recipes = () =>{
         connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;', ((err, result, fields) => {
             if (err) {
                 console.log(result);
-                return reject(error);
+                return reject(err);
             }
 
             resolve(result);
@@ -155,6 +155,21 @@ const getRandomRecipeId = () => {
         }))
     })
 }
+const getTopRecipes = () => {
+    return new Promise(((resolve, reject) => {
+        connection.query('SELECT ROUND(AVG(rate),1) as average, recipes.name, recipes.id_recipe from rating ' +
+            'inner join recipes on recipes.id_recipe = rating.id_recipe ' +
+            'group by name order by average desc;', (error, results, fields) => {
+
+            if(error){
+                console.log(error);
+                reject(error);
+            }
+
+            resolve(results);
+        });
+    }))
+}
 
 
 module.exports = {
@@ -167,4 +182,5 @@ module.exports = {
     getLast3Recipes,
     addNewRecipe,
     getRandomRecipeId,
+    getTopRecipes,
 }

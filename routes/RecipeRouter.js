@@ -98,6 +98,32 @@ router.post('/addRate', async (req, res, next) => {
     }
 });
 
+router.get('/top', async (req,res) => {
+    const recipes = await recipeService.getTopRecipes();
+
+    res.render("topRecipesPage", {
+        title: "Epapu",
+        top: recipes,
+    })
+});
+
+
+router.get('/:id', async (req, res) => {
+    const recipeId = req.params.id;
+
+    const recipe = await recipeService.getRecipeById(recipeId);
+    const ingredient = await recipeService.getIngredients(recipeId);
+    const showComment = await commentService.getCommentsByRecipeId(recipeId);
+    const avgRating = await ratingService.getRatingByRecipeId(recipeId);
+
+    res.render('randomRecipe', {
+        recipe: recipe,
+        ingredient: ingredient,
+        comment: showComment,
+        rating: avgRating,
+    });
+})
+
 const filterRecipes =  async (recipes, ingredientsIDs) => {
 
     const recipeIngredients = [];
@@ -122,20 +148,6 @@ const filterRecipes =  async (recipes, ingredientsIDs) => {
 }
 
 
-router.get('/:id', async (req, res) => {
-    const recipeId = req.params.id;
 
-    const recipe = await recipeService.getRecipeById(recipeId);
-    const ingredient = await recipeService.getIngredients(recipeId);
-    const showComment = await commentService.getCommentsByRecipeId(recipeId);
-    const avgRating = await ratingService.getRatingByRecipeId(recipeId);
-
-    res.render('randomRecipe', {
-        recipe: recipe,
-        ingredient: ingredient,
-        comment: showComment,
-        rating: avgRating,
-    });
-})
 
 module.exports = router;

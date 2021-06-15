@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="/stylesheets/recipe.css" type="text/css">
 
 <body>
@@ -21,18 +22,19 @@
             <div id="container">
                 <h5 style="margin-bottom: 0;"> Oceń przepis!</h5>
                 <div style="display: flex">
-                    <div class="rating">
-                        <input type="radio" name="rate" id="rate-5" value="5">
-                        <label for="rate-5" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-4" value="4">
-                        <label for="rate-4" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-3" value="3">
-                        <label for="rate-3" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-2" value="2">
-                        <label for="rate-2" class="fas fa-star"></label>
-                        <input type="radio" name="rate" id="rate-1" value="1">
-                        <label for="rate-1" class="fas fa-star"></label>
-                    </div>
+<!--                    <div class="rating">-->
+<!--                        <input type="radio" name="rate" id="rate-5" value="5">-->
+<!--                        <label for="rate-5" class="fas fa-star"></label>-->
+<!--                        <input type="radio" name="rate" id="rate-4" value="4">-->
+<!--                        <label for="rate-4" class="fas fa-star"></label>-->
+<!--                        <input type="radio" name="rate" id="rate-3" value="3">-->
+<!--                        <label for="rate-3" class="fas fa-star"></label>-->
+<!--                        <input type="radio" name="rate" id="rate-2" value="2">-->
+<!--                        <label for="rate-2" class="fas fa-star"></label>-->
+<!--                        <input type="radio" name="rate" id="rate-1" value="1">-->
+<!--                        <label for="rate-1" class="fas fa-star"></label>-->
+<!--                    </div>-->
+                    <div class="rating"></div>
                     <h5 style="padding: 6px; margin: 0 0 0 .5rem;"> {{rating}}</h5>
 <!--                    <h5 id="yourValue">twoja ocena</h5>-->
                 </div>
@@ -62,6 +64,8 @@
         </div>
     </div>
 </div>
+
+<script src="/javascripts/rater.min.js"></script>
 <script src="/javascripts/addComment.js"></script>
 <script src="/javascripts/starRating.js"></script>
 </body>
