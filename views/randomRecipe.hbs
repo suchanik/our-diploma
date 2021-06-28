@@ -7,7 +7,8 @@
 <div class="center">
     <div class="container" id="dish">
         <div class="container">
-            <h2 class="background__color">{{recipe.name}}</h2>
+            <h2 style="margin-bottom: 0;">{{recipe.name}}</h2>
+            <h6> Średnia ocena: {{rating}}</h6>
             <div class="recipeDescription">
                 <h5>Składniki: </h5>
                 {{#each ingredient}}
@@ -35,7 +36,7 @@
 <!--                        <label for="rate-1" class="fas fa-star"></label>-->
 <!--                    </div>-->
                     <div class="rating"></div>
-                    <h5 style="padding: 6px; margin: 0 0 0 .5rem;"> {{rating}}</h5>
+                    <input id="star-value" type="text">
 <!--                    <h5 id="yourValue">twoja ocena</h5>-->
                 </div>
             </div>

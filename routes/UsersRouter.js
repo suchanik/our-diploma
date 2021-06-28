@@ -116,4 +116,29 @@ router.post("/addUser", (req, res) => {
     }
 })
 
+// router.post("/addUser", (req, res) => {
+//     try {
+//         const {name, email, password, type} = req.body
+//         userService.addUser(name, email, password, type);
+//         // res.render('addUser', )
+//         // res.redirect(`/users/log`);
+//         if (!name || !email || !password) {
+//             return res.status(400).render('register', {
+//                 message: 'Proszę wypełnić wszystkie pola'
+//             })
+//         }
+//         if (error) {
+//             return res.render('register', {
+//                 message: 'Już istnieje użytkownik o takim loginie lub mailu.'
+//             });
+//         } else {
+//             // res.redirect("/")
+//             res.redirect("/users/log")
+//         }
+//
+//     } catch {
+//         res.status(500).send()
+//     }
+// })
+
 module.exports = router;

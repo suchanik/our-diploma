@@ -22,8 +22,8 @@ const getRecipesByRecipe_ingredient = ingredientIDs => {
     return new Promise((resolve, reject) => {
         connection.query(
             'SELECT distinct recipes.id_recipe as "id", recipes.name, recipes.description FROM recipes, `recipe_ingredient` ' +
-            'WHERE `recipe_ingredient`.ID_recipe = recipes.id_recipe and ID_ingredient in (?);',[ingredientIDs], function (error, results, fields) {
-                // console.log(results);
+            'WHERE `recipe_ingredient`.ID_recipe = recipes.id_recipe and ID_ingredient in (?);',[ingredientIDs],
+            function (error, results, fields) {
 
                 if (error) {
                     console.log(results);
@@ -111,7 +111,7 @@ const getLast3Recipes = () =>{
 
 const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) => {
     return new Promise( (resolve, reject) => {
-        connection.query("insert into recipes(name, description, id_user) " +
+        connection.query("INSERT INTO recipes(name, description, id_user) " +
             "values(?, ?, ?)", [title, description, userId], (err, result) => {
 
             if (err) {
@@ -123,7 +123,7 @@ const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) =
         let values = ([...ingredientsIds] || []).map(ingredientId => ([recipeId, ingredientId]));
 
         return new Promise(((resolve, reject) => {
-            connection.query("insert into recipe_ingredient (id_recipe, id_ingredient) values ?", [values], err => {
+            connection.query("INSERT INTO recipe_ingredient (id_recipe, id_ingredient) values ?", [values], err => {
                 if (err) {
                     reject(err);
                 }
@@ -171,6 +171,14 @@ const getTopRecipes = () => {
     }))
 }
 
+const getRecipebyUserIDs = id => {
+    return new Promise((resolve, reject) => {
+        connection.query("select name from recipes where id_user = ?", [id], ((err, result, fields) =>  {
+            resolve(result);
+        }))
+    })
+}
+
 
 module.exports = {
     getIngredientsByRecipeId,
@@ -183,4 +191,5 @@ module.exports = {
     addNewRecipe,
     getRandomRecipeId,
     getTopRecipes,
+    getRecipebyUserIDs,
 }

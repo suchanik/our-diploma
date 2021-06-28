@@ -19,10 +19,10 @@
 #dish h5{
     margin: 2rem 0;
 }
-#dish h6{
-    margin-top: 2rem;
-    display: flex;
-}
+/*#dish h6{*/
+/*    margin-top: 2rem;*/
+/*    display: flex;*/
+/*}*/
 i{
     font-size: x-large;
     margin: .3rem;
@@ -33,17 +33,37 @@ i{
     /*display: flex;*/
     flex-wrap: nowrap;
     align-items: center;
+    font-size: 40px;
+    /*color: #999B9A;*/
 }
-.rating input{
-    display: none;
+/*.rating:hover{*/
+/*    !*color: #6FCF97;*!*/
+/*}*/
+
+.rating-base-layer{
+    color: #aaa;
+}
+.rating-hover-layer{
+    color: #6FCF97;
+}
+.rateing-select-layer{
+    color: #6FCF97;
+}
+#star-value{
+    font-size: 20px;
+    margin-left: 1rem;
+    margin-bottom: .5rem;
+    border: none;
 }
 .rating label{
     float: right;
     font-size: 30px;
     padding: 5px;
-    color: #4444448a;
+    /*color: #4444448a;*/
     transition: all 0.2s ease;
 }
+
+
 input:not(:checked) ~ label:hover,
 input:not(:checked) ~ label:hover~ label{
     color: #6FCF97;
