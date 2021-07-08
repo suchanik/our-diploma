@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const hbs = require("hbs");
-// const fileUpload = require('ex')
+const fileUpload = require('express-fileupload')
 
 const indexRouter = require('./routes/HomeRouter');
 const usersRouter = require('./routes/UsersRouter');
@@ -21,6 +21,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + "/views/partials")
 
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

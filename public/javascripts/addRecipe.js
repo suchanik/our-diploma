@@ -5,13 +5,17 @@ $("#add-recipe-btn").on("click", () => {
     const selectedCategory = $("#category-select option:selected").map(function () {
         return this.value;
     }).get();
+    const addImage = $("#image-adding").map(function (){
+        return this.value;
+    }).get()
 
     $.ajax({
         url: "recipes/addrecipe",
         method: "POST",
         data: JSON.stringify({
             ingrediendsIDs: selectedIngredients,
-            categoryIDs: selectedCategory
+            categoryIDs: selectedCategory,
+
         }),
         contentType: "application/json",
         success: results => {

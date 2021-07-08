@@ -109,7 +109,7 @@ const getLast3Recipes = () =>{
 
 //dodawanie przepisu
 
-const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) => {
+const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId, photoName, data ) => {
     return new Promise( (resolve, reject) => {
         connection.query("INSERT INTO recipes(name, description, id_user) " +
             "values(?, ?, ?)", [title, description, userId], (err, result) => {
@@ -139,6 +139,16 @@ const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) =
                 }
                 resolve(recipeId)
             })
+        });
+    }).then( recipeId => {
+        return new Promise((resolve, reject) => {
+            connection.query('INSERT INTO img (name, img, id_recipe) VALUES (?, ?, ?)',
+                [photoName, data, recipeId], (err, res) => {
+                    if (err) {
+                        return reject(error)
+                    }
+                    resolve(recipeId)
+                })
         });
     })
 }

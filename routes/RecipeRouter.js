@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require("../config/db_config")
+const fileUpload = require('express-fileupload')
 
 const recipeService = require("../service/RecipeService");
 const commentService = require("../service/CommentService")
@@ -50,12 +51,22 @@ router.get('/addRecipe',  async (req, res, next) => {
 });
 
 router.post('/addRecipe',  async (req, res, next) => {
-    const {recipeName, ingredientsIds, categoryIDs, description} = req.body;
-    const {userId} = req.session;
+    try{
+        const {recipeName, ingredientsIds, categoryIDs, description} = req.body;
+        const {userId} = req.session;
+        const {photoName, data} = req.files.pic;
+        console.log(req.files.pic);
+        if(photoName && data){
+            let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, categoryIDs, description, userId, photoName, data);
+            res.redirect(`/recipes/${recipeId}`)
+        }else {
+            res.sendStatus(400)
+        }
+    }catch (err){
+        next(err);
+    }
 
-    let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, categoryIDs, description, userId);
 
-    res.redirect(`/recipes/${recipeId}`)
 });
 
 

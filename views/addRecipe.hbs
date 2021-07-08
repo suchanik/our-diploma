@@ -32,7 +32,10 @@
                 </div>
             </div>
             <div class="col-2" id="add-picture">
-                <h6>Dodaj zdjęcie</h6>
+                <form action="/recipes/addRecipe" id="image-adding" enctype="multipart/form-data" method="post">
+                    <input type="file" name="pic">
+                    <input type="submit" value="Dodaj zdjęcie">
+                </form>
             </div>
         </div>
 
