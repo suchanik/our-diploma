@@ -22,8 +22,8 @@ const getRecipesByRecipe_ingredient = ingredientIDs => {
     return new Promise((resolve, reject) => {
         connection.query(
             'SELECT distinct recipes.id_recipe as "id", recipes.name, recipes.description FROM recipes, `recipe_ingredient` ' +
-            'WHERE `recipe_ingredient`.ID_recipe = recipes.id_recipe and ID_ingredient in (?);',[ingredientIDs], function (error, results, fields) {
-                // console.log(results);
+            'WHERE `recipe_ingredient`.ID_recipe = recipes.id_recipe and ID_ingredient in (?);',[ingredientIDs],
+            function (error, results, fields) {
 
                 if (error) {
                     console.log(results);
@@ -96,10 +96,10 @@ const getIngredients = id => {
 
 const getLast3Recipes = () =>{
     return new Promise((resolve, reject) => {
-        connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;', ((err, result, fields) => {
+        connection.query('SELECT * from recipes ORDER BY id_recipe DESC LIMIT 3;', ((err, result, fields) => {
             if (err) {
                 console.log(result);
-                return reject(error);
+                return reject(err);
             }
 
             resolve(result);
@@ -109,10 +109,10 @@ const getLast3Recipes = () =>{
 
 //dodawanie przepisu
 
-const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) => {
+const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId, photoName) => {
     return new Promise( (resolve, reject) => {
-        connection.query("insert into recipes(name, description, id_user) " +
-            "values(?, ?, ?)", [title, description, userId], (err, result) => {
+        connection.query("INSERT INTO recipes(name, description, id_user, picture_path) " +
+            "values(?, ?, ?, ?)", [title, description, userId, photoName], (err, result) => {
 
             if (err) {
                 reject(err);
@@ -123,7 +123,7 @@ const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) =
         let values = ([...ingredientsIds] || []).map(ingredientId => ([recipeId, ingredientId]));
 
         return new Promise(((resolve, reject) => {
-            connection.query("insert into recipe_ingredient (id_recipe, id_ingredient) values ?", [values], err => {
+            connection.query("INSERT INTO recipe_ingredient (id_recipe, id_ingredient) values ?", [values], err => {
                 if (err) {
                     reject(err);
                 }
@@ -141,6 +141,53 @@ const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId) =
             })
         });
     })
+        // .then( recipeId => {
+    //     return new Promise((resolve, reject) => {
+    //         connection.query('INSERT INTO img (name, img, id_recipe) VALUES (?, ?, ?)',
+    //             [photoName, data, recipeId], (err, res) => {
+    //                 if (err) {
+    //                     return reject(error)
+    //                 }
+    //                 resolve(recipeId)
+    //             })
+    //     });
+    // })
+}
+
+const getRandomRecipeId = () => {
+    return new Promise((resolve, reject) => {
+        connection.query('SELECT id_recipe FROM recipes ORDER BY RAND() LIMIT 1;', ((err, result, fields) => {
+            if (err || result.length === 0) {
+                console.log(result);
+                return reject(err);
+            }
+
+            resolve(result.shift().id_recipe);
+        }))
+    })
+}
+const getTopRecipes = () => {
+    return new Promise(((resolve, reject) => {
+        connection.query('SELECT ROUND(AVG(rate),1) as average, recipes.name, recipes.id_recipe from rating ' +
+            'inner join recipes on recipes.id_recipe = rating.id_recipe ' +
+            'group by name order by average desc;', (error, results, fields) => {
+
+            if(error){
+                console.log(error);
+                reject(error);
+            }
+
+            resolve(results);
+        });
+    }))
+}
+
+const getRecipebyUserIDs = id => {
+    return new Promise((resolve, reject) => {
+        connection.query("select name from recipes where id_user = ?", [id], ((err, result, fields) =>  {
+            resolve(result);
+        }))
+    })
 }
 
 
@@ -153,4 +200,7 @@ module.exports = {
     getIngredients,
     getLast3Recipes,
     addNewRecipe,
+    getRandomRecipeId,
+    getTopRecipes,
+    getRecipebyUserIDs,
 }

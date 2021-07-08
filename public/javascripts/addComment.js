@@ -13,7 +13,7 @@ $("#add-description-btn").on("click", () => {
         }),
         success: results => {
             console.log(results);
-            // renderEdit(results)
+            window.location.reload();
         },
         error: err => {
             renderErrorMsg("Błąd");

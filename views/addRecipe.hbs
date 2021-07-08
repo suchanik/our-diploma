@@ -4,7 +4,7 @@
 {{> navbar}}
 
 <div style="margin-left: 23rem;" class="container">
-    <form action="/recipes/addRecipe" method="post">
+    <form action="/recipes/addRecipe" method="post" encType="multipart/form-data">
         <div class="row mb-3 " id="recipe-name">
             <input type="recipeName" id="recipeName" name="recipeName" placeholder="Dodaj tytuł">
         </div>
@@ -25,14 +25,17 @@
                 <div class="multi_select_box" style="margin: 1rem 0;">
                     <select class="category-select w-100" name="categoryIDs" id="category-select" data-live-search="true" title="Nie wybrano żadnej kategori"
                             data-selected-text-format="count > 2" data-count-selected-text ="Wybrano {0} kategorie" multiple>
-                        {{#each category}}
+                        {{#each categories}}
                             <option value="{{this.id_category}}">{{this.name}}</option>
                         {{/each}}
                     </select>
                 </div>
             </div>
             <div class="col-2" id="add-picture">
-                <h6>Dodaj zdjęcie</h6>
+<!--                <form action="/recipes/addRecipe" id="image-adding" enctype="multipart/form-data" method="post">-->
+                    <input type="file" name="pic">
+<!--                    <input type="submit" value="Dodaj zdjęcie">-->
+<!--                </form>-->
             </div>
         </div>
 

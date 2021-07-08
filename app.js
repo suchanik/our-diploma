@@ -1,29 +1,33 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
 const session = require("express-session");
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/UsersRouter');
-var navRouter = require('./routes/Nav');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const hbs = require("hbs");
-const recipesRouter = require("./routes/RecipeRouter")
+const fileUpload = require('express-fileupload')
 
-var app = express();
+const indexRouter = require('./routes/HomeRouter');
+const usersRouter = require('./routes/UsersRouter');
+const recipesRouter = require("./routes/RecipeRouter")
+const ingredientsRouter = require("./routes/IngredientsRouter");
+const categoryRouter = require("./routes/CategoryRouter");
+
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + "/views/partials")
 
+app.use(fileUpload());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'images')));
 
 app.use(session({
   secret: "secret",
@@ -46,8 +50,9 @@ app.use(bodyParser.json());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/', navRouter);
-app.use("/recipes", recipesRouter)
+app.use("/recipes", recipesRouter);
+app.use("/ingredients", ingredientsRouter);
+app.use("/categories", categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

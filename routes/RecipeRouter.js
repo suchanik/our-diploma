@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const connection = require("../config/db_config")
+const fileUpload = require('express-fileupload')
 
 const recipeService = require("../service/RecipeService");
 const commentService = require("../service/CommentService")
@@ -39,40 +40,54 @@ router.get('/addRecipe',  async (req, res, next) => {
     }
     else {
         let ingredients = await ingredientsService.getAllIngredients();
-        let category = await categoryService.getAllCategory();
-
-
-        connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
-            //     const data = result.shift();
+        let categories = await categoryService.getAllCategories();
+        let recipeName = await recipeService.getRecipebyUserIDs();
             res.render('addRecipe', {
                 ingredients,
-                category,
-
+                categories,
+                recipeName,
             });
-        }))
     }
 });
 
 router.post('/addRecipe',  async (req, res, next) => {
-    const {recipeName, ingredientsIds, categoryIDs, description} = req.body;
-    const {userId} = req.session;
+    try{
+        const {recipeName, ingredientsIds, categoryIDs, description} = req.body;
+        const {userId} = req.session;
+        console.log(req.files.pic);
 
-    let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, categoryIDs, description, userId);
+        console.log("HAHAHHA", getAppRootPath());
 
-    res.redirect(`/recipes/${recipeId}`)
+        let picture = req.files.pic;
+        const uploadPath = getAppRootPath() + "/images/" + picture.name;
+
+        picture.mv(uploadPath, err => {
+            if (err)
+                res.status(500).send(err);
+        })
+
+        if(picture){
+            let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, categoryIDs, description, userId, picture.name);
+            res.redirect(`/recipes/${recipeId}`)
+        }else {
+            res.sendStatus(400)
+        }
+    }catch (err){
+        next(err);
+    }
+
+
 });
 
 
 
 /////////////////////
 router.get('/randomRecipe', (req, res, next) => {
-
-    connection.query("select name from recipes where id_user = ?", [req.session.userId], ((err, result, fields) =>  {
-        const data = result.shift();
-        res.render('randomRecipe', {
-            name: data.name,
-        });
-    }))
+    recipeService
+        .getRandomRecipeId()
+        .then(recipeId => {
+            res.redirect(`/recipes/${recipeId}`);
+        })
 });
 ////////////////////////
 
@@ -91,14 +106,46 @@ router.post('/addComment', async (req, res, next) => {
 
 router.post('/addRate', async (req, res, next) => {
     try{
-        const {userId, recipeId, rate} = req.body;
-        await ratingService.addRate(userId,recipeId,rate)
-        res.json("Udało sie dodać ocenę");
+        const {userId, recipeId, value: rate} = req.body;
+
+        if (rate && userId && recipeId) {
+            const asd = await ratingService.addRate(userId,recipeId,rate)
+            res.redirect(`/recipes/${recipeId}`);
+        }
     }catch (err){
         res.status(500).send()
         next(err)
     }
 });
+
+router.get('/top', async (req,res) => {
+    const recipes = await recipeService.getTopRecipes();
+
+    res.render("topRecipesPage", {
+        title: "Epapu",
+        top: recipes,
+    })
+});
+
+
+router.get('/:id', async (req, res) => {
+    const recipeId = req.params.id;
+    const {userId} = req.session;
+
+    const recipe = await recipeService.getRecipeById(recipeId);
+    const ingredient = await recipeService.getIngredients(recipeId);
+    const showComment = await commentService.getCommentsByRecipeId(recipeId);
+    const avgRating = await ratingService.getAvgRatingByRecipeId(recipeId);
+    const userRate = await ratingService.getRateByUserIdAndRecipeId(userId, recipeId);
+
+    res.render('randomRecipe', {
+        recipe: recipe,
+        ingredient: ingredient,
+        comment: showComment,
+        rating: avgRating,
+        userRate: userRate,
+    });
+})
 
 const filterRecipes =  async (recipes, ingredientsIDs) => {
 
@@ -124,20 +171,13 @@ const filterRecipes =  async (recipes, ingredientsIDs) => {
 }
 
 
-router.get('/:id', async (req, res) => {
-    const recipeId = req.params.id;
+const getAppRootPath = () => {
+    const currPath = __dirname;
+    let lastIndex = currPath.lastIndexOf("/");
 
-    const recipe = await recipeService.getRecipeById(recipeId);
-    const ingredient = await recipeService.getIngredients(recipeId);
-    const showComment = await commentService.getCommentsByRecipeId(recipeId);
-    const avgRating = await ratingService.getRatingByRecipeId(recipeId);
+    return currPath.substring(0, lastIndex);
+}
 
-    res.render('randomRecipe', {
-        recipe: recipe,
-        ingredient: ingredient,
-        comment: showComment,
-        rating: avgRating,
-    });
-})
+
 
 module.exports = router;
