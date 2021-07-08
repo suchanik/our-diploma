@@ -8,12 +8,14 @@
             <h2 class="background__color__top">Co nowego?</h2>
         </div>
         <div class="container">
-            <div class="row">
+            <div class="row" style="margin-top: 50px;">
                 {{#each lastRecipes}}
                     <div class="col-sm-4">
-                        <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                             class="img-fluid">
-                        <figcaption>{{this.name}}</figcaption>
+                        <a href=/recipes/{{this.id_recipe}}>
+                            <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
+                                 class="img-fluid">
+                            <figcaption>{{this.name}}</figcaption>
+                        </a>
                     </div>
                 {{/each}}
             </div>
@@ -26,7 +28,6 @@
     <div style="margin-top: 4rem;" class="container">
         <h2>Wyszukaj przepisy po składnikach</h2>
         <div class="multi_select_box">
-            <!--                main.js  linijka: 54-->
             <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
                     title="Nie wybrano żadnych składników"
                     data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}" multiple>
