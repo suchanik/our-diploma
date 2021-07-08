@@ -54,10 +54,20 @@ router.post('/addRecipe',  async (req, res, next) => {
     try{
         const {recipeName, ingredientsIds, categoryIDs, description} = req.body;
         const {userId} = req.session;
-        const {photoName, data} = req.files.pic;
         console.log(req.files.pic);
-        if(photoName && data){
-            let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, categoryIDs, description, userId, photoName, data);
+
+        console.log("HAHAHHA", getAppRootPath());
+
+        let picture = req.files.pic;
+        const uploadPath = getAppRootPath() + "/images/" + picture.name;
+
+        picture.mv(uploadPath, err => {
+            if (err)
+                res.status(500).send(err);
+        })
+
+        if(picture){
+            let recipeId = await recipeService.addNewRecipe(recipeName, ingredientsIds, categoryIDs, description, userId, picture.name);
             res.redirect(`/recipes/${recipeId}`)
         }else {
             res.sendStatus(400)
@@ -96,9 +106,12 @@ router.post('/addComment', async (req, res, next) => {
 
 router.post('/addRate', async (req, res, next) => {
     try{
-        const {userId, recipeId, rate} = req.body;
-        await ratingService.addRate(userId,recipeId,rate)
-        res.json("Udało sie dodać ocenę");
+        const {userId, recipeId, value: rate} = req.body;
+
+        if (rate && userId && recipeId) {
+            const asd = await ratingService.addRate(userId,recipeId,rate)
+            res.redirect(`/recipes/${recipeId}`);
+        }
     }catch (err){
         res.status(500).send()
         next(err)
@@ -117,17 +130,20 @@ router.get('/top', async (req,res) => {
 
 router.get('/:id', async (req, res) => {
     const recipeId = req.params.id;
+    const {userId} = req.session;
 
     const recipe = await recipeService.getRecipeById(recipeId);
     const ingredient = await recipeService.getIngredients(recipeId);
     const showComment = await commentService.getCommentsByRecipeId(recipeId);
-    const avgRating = await ratingService.getRatingByRecipeId(recipeId);
+    const avgRating = await ratingService.getAvgRatingByRecipeId(recipeId);
+    const userRate = await ratingService.getRateByUserIdAndRecipeId(userId, recipeId);
 
     res.render('randomRecipe', {
         recipe: recipe,
         ingredient: ingredient,
         comment: showComment,
         rating: avgRating,
+        userRate: userRate,
     });
 })
 
@@ -154,6 +170,13 @@ const filterRecipes =  async (recipes, ingredientsIDs) => {
     );
 }
 
+
+const getAppRootPath = () => {
+    const currPath = __dirname;
+    let lastIndex = currPath.lastIndexOf("/");
+
+    return currPath.substring(0, lastIndex);
+}
 
 
 

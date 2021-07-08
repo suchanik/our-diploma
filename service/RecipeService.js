@@ -96,7 +96,7 @@ const getIngredients = id => {
 
 const getLast3Recipes = () =>{
     return new Promise((resolve, reject) => {
-        connection.query('SELECT name, id_recipe from recipes ORDER BY id_recipe DESC LIMIT 3;', ((err, result, fields) => {
+        connection.query('SELECT * from recipes ORDER BY id_recipe DESC LIMIT 3;', ((err, result, fields) => {
             if (err) {
                 console.log(result);
                 return reject(err);
@@ -109,10 +109,10 @@ const getLast3Recipes = () =>{
 
 //dodawanie przepisu
 
-const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId, photoName, data ) => {
+const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId, photoName) => {
     return new Promise( (resolve, reject) => {
-        connection.query("INSERT INTO recipes(name, description, id_user) " +
-            "values(?, ?, ?)", [title, description, userId], (err, result) => {
+        connection.query("INSERT INTO recipes(name, description, id_user, picture_path) " +
+            "values(?, ?, ?, ?)", [title, description, userId, photoName], (err, result) => {
 
             if (err) {
                 reject(err);
@@ -140,17 +140,18 @@ const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId, p
                 resolve(recipeId)
             })
         });
-    }).then( recipeId => {
-        return new Promise((resolve, reject) => {
-            connection.query('INSERT INTO img (name, img, id_recipe) VALUES (?, ?, ?)',
-                [photoName, data, recipeId], (err, res) => {
-                    if (err) {
-                        return reject(error)
-                    }
-                    resolve(recipeId)
-                })
-        });
     })
+        // .then( recipeId => {
+    //     return new Promise((resolve, reject) => {
+    //         connection.query('INSERT INTO img (name, img, id_recipe) VALUES (?, ?, ?)',
+    //             [photoName, data, recipeId], (err, res) => {
+    //                 if (err) {
+    //                     return reject(error)
+    //                 }
+    //                 resolve(recipeId)
+    //             })
+    //     });
+    // })
 }
 
 const getRandomRecipeId = () => {

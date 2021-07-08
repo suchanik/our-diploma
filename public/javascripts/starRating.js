@@ -35,21 +35,29 @@
 const options = {
     max_value: 5,
     step_size: 1,
-    initial_value: 0,
+    initial_value: $("#userRate").val(),
     selected_symbol_type: 'utf8_star', // Must be a key from symbols
     hover: '\u2B22',
     cursor: 'default',
-    readonly: false,
+    readonly: $("#userId").val() === "",
     change_once: false, // Determines if the rating can only be set once
     ajax_method: 'POST',
-    url: 'http://localhost/test.php',
-    additional_data: {}, // Additional data to send to the server
+    url: 'http://localhost:3000/recipes/addRate',
+    additional_data: {
+        userId: $("#userId").val(),
+        recipeId: $("#recipeId").val()
+    }, // Additional data to send to the server
     update_input_field_name: $("#star-value"),
+    // after: window.location.reload()
 }
 
 $(".rating").rate(options);
-$(".rating").rate("getValue");
+// $(".rating").rate("getValue");
 $(".rating").rate("setValue");
 $(".rating").on("change", function(ev, data){
     console.log(data.from, data.to);
 });
+
+$(".rating").on("updateSuccess", function(ev, data){
+    window.location.reload();
+})
