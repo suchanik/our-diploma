@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require("../config/db_config")
 const fileUpload = require('express-fileupload')
+const path = require("path")
 
 const recipeService = require("../service/RecipeService");
 const commentService = require("../service/CommentService")
@@ -54,13 +55,14 @@ router.post('/addRecipe',  async (req, res, next) => {
     try{
         const {recipeName, ingredientsIds, categoryIDs, description} = req.body;
         const {userId} = req.session;
-        console.log(req.files.pic);
+        // console.log(req.files.pic);
 
         console.log("HAHAHHA", getAppRootPath());
 
         let picture = req.files.pic;
-        const uploadPath = getAppRootPath() + "/images/" + picture.name;
+        const uploadPath = getAppRootPath() + path.sep + "images" + path.sep + picture.name;
 
+        console.log(uploadPath, __dirname, getAppRootPath())
         picture.mv(uploadPath, err => {
             if (err)
                 res.status(500).send(err);
@@ -173,9 +175,12 @@ const filterRecipes =  async (recipes, ingredientsIDs) => {
 
 const getAppRootPath = () => {
     const currPath = __dirname;
-    let lastIndex = currPath.lastIndexOf("/");
+    let lastIndex = currPath.lastIndexOf("\\");
 
-    return currPath.substring(0, lastIndex);
+    const newPath = currPath.substring(0, lastIndex);
+
+    console.log(newPath, typeof newPath);
+    return newPath;
 }
 
 
