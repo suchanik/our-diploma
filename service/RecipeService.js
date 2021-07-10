@@ -21,7 +21,7 @@ const getIngredientsByRecipeId = recipeId => {
 const getRecipesByRecipe_ingredient = ingredientIDs => {
     return new Promise((resolve, reject) => {
         connection.query(
-            'SELECT distinct recipes.id_recipe as "id", recipes.name, recipes.description FROM recipes, `recipe_ingredient` ' +
+            'SELECT distinct recipes.id_recipe as "id", recipes.name, recipes.description, recipes.picture_path FROM recipes, `recipe_ingredient` ' +
             'WHERE `recipe_ingredient`.ID_recipe = recipes.id_recipe and ID_ingredient in (?);',[ingredientIDs],
             function (error, results, fields) {
 
@@ -56,7 +56,7 @@ const getCategoriesByRecipeId = recipeId => {
 const getRecipesByRecipe_category = rec_cat => {
     return new Promise((resolve, reject) => {
         connection.query(
-            'SELECT distinct id_recipe as id, name from recipes natural join recipe_category WHERE id_category in (?);',[rec_cat], function (error, results, fields) {
+            'SELECT distinct id_recipe as id, name, picture_path from recipes natural join recipe_category WHERE id_category in (?);',[rec_cat], function (error, results, fields) {
 
                 if (error) {
                     console.log(results);
@@ -168,7 +168,7 @@ const getRandomRecipeId = () => {
 }
 const getTopRecipes = () => {
     return new Promise(((resolve, reject) => {
-        connection.query('SELECT ROUND(AVG(rate),1) as average, recipes.name, recipes.id_recipe from rating ' +
+        connection.query('SELECT ROUND(AVG(rate),1) as average, recipes.name, recipes.id_recipe, recipes.picture_path from rating ' +
             'inner join recipes on recipes.id_recipe = rating.id_recipe ' +
             'group by name order by average desc;', (error, results, fields) => {
 

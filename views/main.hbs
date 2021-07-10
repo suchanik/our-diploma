@@ -11,9 +11,11 @@
             <div class="row">
                 {{#each lastRecipes}}
                     <div class="col-sm-4">
-                        <img src="{{this.picture_path}}"
+                        <a href=/recipes/${recipe.id}>
+                        <img src="/{{this.picture_path}}"
                              class="img-fluid">
                         <figcaption>{{this.name}}</figcaption>
+                        </a>
                     </div>
                 {{/each}}
             </div>
@@ -26,7 +28,6 @@
     <div style="margin-top: 4rem;" class="container">
         <h2>Wyszukaj przepisy po składnikach</h2>
         <div class="multi_select_box">
-            <!--                main.js  linijka: 54-->
             <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
                     title="Nie wybrano żadnych składników"
                     data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}" multiple>
