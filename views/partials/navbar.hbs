@@ -35,13 +35,14 @@
     <div class="menu">
         <div class="epapu"><a href="/">E-papu</a></div>
         <a href="/recipes/top" title="Top przepisy">Top</a>
+        <div class="v-line"></div>
         <a href="/ingredients" title="Wyszukaj przepisy po składnikach">Składniki</a>
         <a href="/categories" title="Rodzaje kuchni">Kategorie</a>
         <a href="/recipes/randomRecipe" title="Losuj przepis">Losuj </a>
 
         {{#if session.loggedIn}}
             <div class="iconWrapper">
-                <a href="/users/profile" title="Twój profil">
+                <a href="/users/profile" title="Twój profil" style="text-decoration: none;">
                     {{session.name}} <i class="far fa-user"></i>
                 </a>
                 <a href="/recipes/addrecipe" title="Dodaj przepis" style="text-decoration: none; margin-left: 10px">
