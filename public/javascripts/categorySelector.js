@@ -34,7 +34,7 @@ const categorySelectedRecipes = recipes => {
         $list.append(`<div class="col-sm-4" >
                         <a href=/recipes/${recipe.id} >
                             <img src="/${recipe.picture_path}"
-                             class="img-fluid">
+                             class="img-box">
                             <figcaption>${recipe.name}</figcaption>
                         </a> 
                     </div>`)

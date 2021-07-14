@@ -1,28 +1,32 @@
 <link rel="stylesheet" href="/stylesheets/logRes.css" type="text/css">
+<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css">
 
 <body>
 {{>navbar}}
 
-<div class="center">
-    <div class="container">
-        <form action="/users/auth" method="POST">
-            <div id="board">
-                <div class="window">
-                    <h4> Login</h4>
-                    <input type="login" id="login" name="name">
-                    <h4> Hasło</h4>
-                    <input type="password" id="haslo" name="password">
-                    <button class="button" type="submit">
-                        <a> Zaloguj</a></button>
-                </div>
+<div class="container">
+    <form action="/users/auth" method="POST">
+        <div id="board">
+            <img src="../chicken.png" class="pic-chicken">
+            <img src="../cookie.png" class="pic-cookie">
+            <img src="../pasta.png" class="pic-pasta">
+            <img src="../pie.png" class="pic-pie">
+            <img src="../salad.jpg" class="pic-salad">
+            <div class="window buttons">
+                <h4 class="log-in"> Logowanie</h4>
+                <input type="login" id="login" name="name" placeholder="Login">
+                <input type="password" id="haslo" name="password" placeholder="Hasło">
+                <button class="button" type="submit">
+                    <a> Zaloguj</a></button>
                 <h7> Nie masz jeszcze konta?</h7>
-                <a style="color: black;" href="/users/reg"><h6>Zarejestruj się!</h6></a>
+                <a href="/users/reg" class="register-background"><h6>Zarejestruj się!</h6></a>
             </div>
-        </form>
-        {{#if message }}
-            <h7 class="alert alert-danger" style="display: flex; justify-content: center;">{{message}}</h7>
-        {{/if}}
-    </div>
+        </div>
+    </form>
+    {{#if message }}
+        <div class="row justify-content-md-center red-alert">
+            <h7 class="alert alert-danger">{{message}}</h7>
+        </div>
+    {{/if}}
 </div>
-
 </body>

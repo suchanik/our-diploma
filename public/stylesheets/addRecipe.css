@@ -1,36 +1,60 @@
 #recipe-name input{
     border: 0px solid;
     border-bottom: 4px solid #6FCF97;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+    outline: none;
 }
 
 #add-ingredients h5{
     margin-top: 0; !important;
 }
 
-#add-picture{
-    border: 4px solid #6FCF97;
-}
-#add-picture h6{
-    text-align: center;
-    padding-top: 3rem;
+input[type="file"] {
+    display: none;
 }
 
-#comments{
-    border: 4px solid #6FCF97;
-}
-
-button{
-    margin: 2rem;
+.custom-file-upload {
+    /*border: 4px solid #6FCF97;*/
+    /*display: inline-block;*/
+    /*padding: 6px 32px;*/
+    margin: 5rem .2rem;
     background-color: #6FCF97;
-    border-style: none;
-
+    border-color: white;
+    border-style: solid;
+    border-width: 3px;
+    width: 150px;
+    outline: none !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+.custom-file-upload:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.55);
 }
 
-/*::-webkit-input-placeholder {*/
+.add-picture{
+    border: 4px solid #6FCF97;
+    width: 200px !important;
+    height: 200px;
+}
+/*#add-picture h6{*/
 /*    text-align: center;*/
+/*    padding-top: 3rem;*/
 /*}*/
 
-/*:-ms-input-placeholder {*/
-/*    text-align: center;*/
-/*}*/
+#comments textarea{
+    border: 4px solid #6FCF97;
+}
+
+textarea{
+    outline: none;
+}
+
+.add-recipe-background:before{
+    content: '';
+    position: absolute;
+    width: 60%;
+    height: 90%;
+    background: #6FCF97;
+    transform: matrix(1.2, -.04, .03, 1.3, 0, 0);
+    z-index: -1;
+}

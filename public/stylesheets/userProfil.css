@@ -26,12 +26,16 @@ i{
 }
 
 input{
-    margin-top: 1rem;
+    /*margin-top: 1rem;*/
     /*height: 80px;*/
-    width: 80%;
+    width: 70%;
     background-color: #6FCF97;
+    border: none;
 }
-button{
-    margin-top: 2rem;
-    background-color: #6FCF97;
+input:focus{
+    outline: none;
+}
+
+.user-data h5{
+    margin-bottom: 1rem;
 }

@@ -1,6 +1,6 @@
 .multi_select_box{
     width: 400px;
-    margin-top: 3rem;
+    border-radius: 0px;
 }
 .multi_select_box select{
     width: 100%;

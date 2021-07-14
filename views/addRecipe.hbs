@@ -1,20 +1,23 @@
 <link rel="stylesheet" href="/stylesheets/addRecipe.css" type="text/css">
+<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css">
 
 <body>
 {{> navbar}}
 
-<div style="margin-left: 23rem;" class="container">
+<div class="container">
     <form action="/recipes/addRecipe" method="post" encType="multipart/form-data">
-        <div class="row mb-3 " id="recipe-name">
-            <input type="recipeName" id="recipeName" name="recipeName" placeholder="Dodaj tytuł">
+        <div class="col-md-4 offset-1" id="recipe-name">
+            <input type="recipeName" id="recipeName" name="recipeName" placeholder="Dodaj tytuł"
+                   style="font-size: 24px">
         </div>
 
-        <div class="row mb-3">
-            <div class="col-7" style="padding: 0;" >
+        <div class="row justify-content-md-center">
+            <div class="col-7 add-recipe-background">
                 <h5>Dodaj składniki: </h5>
                 <div class="multi_select_box" style="margin: 1rem 0;">
-                    <select class="ingredients-select w-100" name="ingredientsIds" id="ingredients-select" data-live-search="true" title="Nie wybrano żadnych składników"
-                            data-selected-text-format="count > 3" data-count-selected-text ="Wybrano {0}"
+                    <select class="ingredients-select w-75" name="ingredientsIds" id="ingredients-select"
+                            data-live-search="true" title="Nie wybrano żadnych składników"
+                            data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}"
                             noneResultsText='Nie ma takiego składnika, spróbuj wpisać inaczej' multiple>
                         {{#each ingredients}}
                             <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
@@ -22,35 +25,38 @@
                     </select>
                 </div>
                 <h5>Dodaj kategorie: </h5>
-                <div class="multi_select_box" style="margin: 1rem 0;">
-                    <select class="category-select w-100" name="categoryIDs" id="category-select" data-live-search="true" title="Nie wybrano żadnej kategori"
-                            data-selected-text-format="count > 2" data-count-selected-text ="Wybrano {0} kategorie" multiple>
+                <div class="multi_select_box">
+                    <select class="category-select w-75" name="categoryIDs" id="category-select" data-live-search="true"
+                            title="Nie wybrano żadnej kategori"
+                            data-selected-text-format="count > 2" data-count-selected-text="Wybrano {0} kategorie"
+                            multiple>
                         {{#each categories}}
                             <option value="{{this.id_category}}">{{this.name}}</option>
                         {{/each}}
                     </select>
                 </div>
             </div>
-            <div class="col-2" id="add-picture">
-<!--                <form action="/recipes/addRecipe" id="image-adding" enctype="multipart/form-data" method="post">-->
+
+            <div class="col-2  add-picture" id="add-picture" style="margin-right: 3rem;">
+                <label class="custom-file-upload">
                     <input type="file" name="pic">
-<!--                    <input type="submit" value="Dodaj zdjęcie">-->
-<!--                </form>-->
+                        <div style="margin-left: 1.5rem;">
+                            Dodaj zdjęcie
+                        </div>
+                </label>
             </div>
         </div>
 
-
-        <div class="row mb-3">
-            <h5>Opis wykonania</h5>
-            <div class="w-100"></div>
-            <div class="row form-row" id="comments">
+        <div class="container" style="margin-top: 4rem;">
+            <h5 style="margin: 0 0 2rem 7rem;">Opis wykonania</h5>
+            <div class="row justify-content-center" id="comments">
                 <textarea rows="7" cols="80" id="description" name="description"> </textarea>
             </div>
+            <div class="row justify-content-center buttons">
+                <button class="button" id="add-recipe-btn" type="submit">Zapisz</button>
+            </div>
         </div>
 
-        <div style="margin-left: 25rem" class="row mb-3">
-            <button class="button" id="add-recipe-btn" type="submit">Zapisz</button>
-        </div>
     </form>
 
 </div>

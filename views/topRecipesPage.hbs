@@ -1,22 +1,24 @@
 <body>
 {{> navbar}}
-<div class="center">
     <div class="container">
-        <div>
-            <h2 class="background__color__top" >Top przepisy</h2>
+        <div class="background-color-top">
+            <h2>Top przepisy</h2>
         </div>
         <div class="container">
             <div class="row">
                 {{#each top}}
                     <div class="col-sm-4">
-                        <img src="/{{this.picture_path}}"
-                             class="img-fluid">
-                        <figcaption>{{this.name}} {{this.average}}</figcaption>
+                        <a href=/recipes/${recipe.id}>
+                            <img src="/{{this.picture_path}}"
+                                 class="img-box">
+                        </a>
+                        <a href=/recipes/${recipe.id}>
+                            <figcaption>{{this.name}} {{this.average}}</figcaption>
+                        </a>
                     </div>
                 {{/each}}
             </div>
         </div>
     </div>
-</div>
 <script src="/javascripts/main.js"></script>
 </body>

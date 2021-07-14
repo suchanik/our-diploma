@@ -1,60 +1,107 @@
 body {
-  font-family: 'Rhodium Libre', serif !important;
+    font-family: 'Rhodium Libre', serif !important;
 }
 
-.center{
-  padding: 3rem;
-  /*background-color: beige;*/
-  /*height: 100%;*/
-  z-index: -1;
+h2 {
+    /*display: block;*/
+    /*justify-content: left;*/
+    margin-bottom: 3rem !important;
+}
+.background-color-top h2{
+    margin: 0 0 3rem 2rem !important;
+}
+.row a:hover{
+    color: black !important;
 }
 
-h2{
-  display: block;
-  justify-content: left;
-  margin-bottom: 2rem;
+.background-color-top {
+    margin-left: 10px;
 }
 
-.background__color__top:before{
-  content: '';
-  position: absolute;
-  width: 18%;
-  height: 40px;
-  background: #6FCF97;
-  transform: matrix(1,-.05, .03,1,0,0);
-  z-index: -1;
+.background-color-top:before {
+    content: '';
+    position: absolute;
+    width: 250px;
+    height: 40px;
+    background: #6FCF97;
+    transform: matrix(1, -.05, .03, 1, 0, 0);
+    z-index: -1;
 }
 
-.background__color {
-  display: inline-block;
+a img:hover {
+    opacity: 70%;
+    text-decoration: none;
 }
 
-img{
-  width: 300px;
-  height: 300px;
+.img-box {
+    width: 300px;
+    height: 300px;
 }
 
-figcaption{
-  font-size: 18px;
-  margin-top: 2rem;
-  text-align: center;
+figcaption {
+    font-size: 18px;
+    margin: 2rem 0;
+    text-align: center;
+    width: 340px;
+    color: black;
+    text-decoration: none;
 }
 
-#show-recipes-by-ingredients-btn{
-  margin: 2rem 0;
-  background-color: #6FCF97;
-  border-style: none;
-}
-#show-recipes-by-category-btn{
-  margin: 2rem 0;
-  background-color: #6FCF97;
-  border-style: none;
-}
-ul#rendered_recipes-list a{
-  color: black;
+.multi_select_box {
+    /*margin-top: 2px;*/
 }
 
-a {
-  text-decoration: none;
-  color: black;
+/*#show-recipes-by-ingredients-btn {*/
+/*  margin-top: 2rem;*/
+/*  background-color: #6FCF97;*/
+/*  border-color: white;*/
+/*  border-style: solid;*/
+/*  border-width: 3px;*/
+/*}*/
+/*#show-recipes-by-category-btn {*/
+/*    margin: 2rem 0;*/
+/*    background-color: #6FCF97;*/
+/*    border-style: none;*/
+/*}*/
+
+ul#rendered_recipes-list a {
+    color: black;
+}
+
+#background-color:before {
+    content: '';
+    position: absolute;
+    width: 1050px;
+    height: 130px;
+    background: #6FCF97;
+    transform: matrix(1, -.04, .03, 1.5, 0, 0);
+    z-index: -1;
+}
+#background-color2:before {
+    content: '';
+    position: absolute;
+    width: 1050px;
+    height: 40px;
+    background: #6FCF97;
+    transform: matrix(1, -.04, .03, 2.3, 0, 0);
+    z-index: -1;
+}
+.log-in:before{
+    content: '';
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    background: #6FCF97;
+    transform: matrix(1.2, -.05, .03, 1, 0, 0);
+    z-index: -1;
+}
+
+#rendered_recipes-list img {
+  border: 5px solid #6FCF97;
+}
+#rendered_CRecipes-list img{
+    border: 5px solid #6FCF97;
+}
+.userData img{
+    border: 5px solid #6FCF97;
 }

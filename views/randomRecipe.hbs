@@ -1,18 +1,19 @@
-
 <link rel="stylesheet" href="/stylesheets/recipe.css" type="text/css">
+<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css">
 
 <body>
 {{> navbar}}
 
+<input type="hidden" id="userRate" value="{{userRate}}"/>
 
-<input type="hidden" id="userRate" value="{{userRate}}" />
+<!--<div class="container" id="dish">-->
+<div class="container" style="margin-bottom: 4rem;">
+    <div class="row justify-content-md-center">
 
-<div class="center">
-    <div class="container" id="dish">
-        <div class="container">
-            <h2 style="margin-bottom: 0;">{{recipe.name}}</h2>
+        <div class="col-sm-5">
+            <h2 style="margin-bottom: .5rem !important;">{{recipe.name}}</h2>
             <h6> Średnia ocena: {{rating}}</h6>
-            <div class="recipeDescription">
+            <div class="recipeIngr">
                 <h5>Składniki: </h5>
                 {{#each ingredient}}
                     <li>{{this.ing_name}}</li>
@@ -20,44 +21,61 @@
             </div>
         </div>
 
-        <div class="container">
+        <div class="col-sm-4">
             <img src="/{{recipe.picture_path}}"
-                 class="img-thumbnail">
-            <div id="container">
-                <h5 style="margin-bottom: 0;"> Oceń przepis!</h5>
-                <div style="display: flex">
-                    <div class="rating"></div>
-                            <input id="star-value" type="hidden">
-                            {{#if userRate}}
-                                <span style="margin: 10px 10px"> {{userRate}} / 5 </span>
-                            {{/if}}
+                 class="img-box" style="border: 5px solid #6FCF97;">
+            {{#if session.loggedIn}}
+                <div id="container">
+                    <h5 style="margin: 2rem 0 0 0;"> Oceń przepis!</h5>
+                    <div style="display: flex">
+                        <div class="rating"></div>
+                        <input id="star-value" type="hidden">
+                        {{#if userRate}}
+                            <span style="margin: 10px 10px"> {{userRate}} / 5 </span>
+                        {{/if}}
                     </div>
                 </div>
-            </div>
+            {{/if}}
         </div>
 
     </div>
+</div>
 
-    <div class="container">
+<div class="row">
+    <div class="col-md-7 offset-md-3">
         <h5>Wykonanie</h5>
         <div id="recipeDescription">
             {{recipe.description}}
         </div>
     </div>
-    <div style="margin-top: 4rem;" class="container left" id="comments" >
+
+</div>
+<div style="margin-top: 4rem;" class="row" id="comments">
+    <div class="col-md-7 offset-md-3 buttons">
         <h5>Komentarze</h5>
-        <input id="userId" type="hidden" value={{session.userId}}>
-        <input id="recipeId" type="hidden" value={{recipe.id_recipe}}>
-        <input type="description" id="description" name="description" placeholder="Napisz co myślisz o tym przepisie...">
-        <button class="button" id="add-description-btn" type="submit">Dodaj komentarz</button>
+        {{#if session.loggedIn}}
+            <input id="userId" type="hidden" value={{session.userId}}>
+            <input id="recipeId" type="hidden" value={{recipe.id_recipe}}>
+            <input type="description" id="description" name="description"
+                   placeholder="Napisz co myślisz o tym przepisie...">
+            <button class="comment-button" id="add-description-btn" type="submit">Dodaj komentarz</button>
+        {{/if}}
         <div class="container">
             {{#each comment}}
-                <div class="col"> {{this.login}} </div>
-                <div class="col"> {{this.description}} </div>
+                <div class="row" style="margin-bottom: 1rem;">
+                    <img src="https://2.allegroimg.com/original/01e3c6/578eeb734ec9a6f9424d190a6012/CZAPKA-KAPELUSZ-STROJ-KUCHARZ-KUCHARKA-SZEF-KUCHNI"
+                         class="img-profile">
+                    <div class="row" style="margin-left: 2rem;">
+                        <div class="container" style="font-weight: bold;"> {{this.login}} </div>
+                        <div class="container"> {{this.description}} </div>
+                    </div>
+                </div>
+
             {{/each}}
 
         </div>
     </div>
+
 </div>
 
 <script src="/javascripts/rater.min.js"></script>

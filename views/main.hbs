@@ -1,55 +1,62 @@
+<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css">
 <body>
 
 {{> navbar}}
 
 <div class="container">
-    <section class="top-recipes">
-        <div>
-            <h2 class="background__color__top">Co nowego?</h2>
-        </div>
-        <div class="container">
-            <div class="row" style="margin-top: 50px;">
-                {{#each lastRecipes}}
-                    <div class="col-sm-4">
-                        <a href=/recipes/${recipe.id}>
-                        <img src="/{{this.picture_path}}"
-                             class="img-fluid">
-                        <figcaption>{{this.name}}</figcaption>
-                        </a>
-                    </div>
-                {{/each}}
+    <div class="container">
+        <section>
+            <div class="background-color-top">
+                <h2>Co nowego?</h2>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    {{#each lastRecipes}}
+                        <input id="userId" type="hidden" value={{recipe.id}}>
+                        <div class="col-sm-4">
+                            <a href=/recipes/{{this.id}}>
+                                <img src="/{{this.picture_path}}" class="img-box">
+                            </a>
+                            <a href=/recipes/${recipeId}>
+                                <figcaption>{{this.name}}</figcaption>
+                            </a>
+                        </div>
+                    {{/each}}
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+    <section id="ingredient">
+        <div style="margin-top: 4rem;" class="container" id="background-color">
+            <h2 style="margin: 0 0 2rem 2rem !important;">Wyszukaj przepisy po składnikach</h2>
+            <div class="row">
+                <div class="multi_select_box col-sm-4" style="margin-left: 3rem">
+                    <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
+                            title="Nie wybrano żadnych składników"
+                            data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}" multiple>
+                        {{#each ingredients}}
+                            <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-4 buttons">
+                    <button type="submit" id="show-recipes-by-ingredients-btn">Szukaj</button>
+                </div>
             </div>
         </div>
+
     </section>
 
+    <div class="alert alert-danger" id="recipes-error-alert" hidden></div>
 
-</div>
-<section id="ingredient">
-    <div style="margin-top: 4rem;" class="container">
-        <h2>Wyszukaj przepisy po składnikach</h2>
-        <div class="multi_select_box">
-            <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
-                    title="Nie wybrano żadnych składników"
-                    data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}" multiple>
-                {{#each ingredients}}
-                    <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
-                {{/each}}
-            </select>
-        </div>
-        <button type="submit" id="show-recipes-by-ingredients-btn">Szukaj przepisów</button>
+    <div class="container" style="margin-top: 7rem;">
+        <div class="row" id="rendered_recipes-list"></div>
     </div>
-
-</section>
-
-<div class="alert alert-danger" id="recipes-error-alert" hidden>
-
-</div>
-<div>
-    <ul style="margin: .5rem 6rem;" id="rendered_recipes-list"></ul>
 </div>
 
-
-</div>
 
 
 <script src="/javascripts/main.js"></script>

@@ -1,31 +1,33 @@
-
+<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css">
 <body>
 {{> navbar}}
 
-<div class="center">
+<div class="container">
     <section id="category">
         <div class="container">
             <h2>Wyszukaj przepisy po kategori</h2>
-            <div class="multi_select_box">
-                <select class="category-select w-100" id="category-select" data-live-search="true" title="Nie wybrano żadnej kategori"
-                        data-selected-text-format="count > 2" data-count-selected-text ="Wybrano {0} kategorie" multiple>
-                    {{#each categories}}
-                        <option value="{{this.id_category}}">{{this.name}}</option>
-                    {{/each}}
-                </select>
+            <div class="row" id="background-color2">
+                <div class="multi_select_box col-sm-4">
+                    <select class="category-select w-100" id="category-select" data-live-search="true" title="Nie wybrano żadnej kategori"
+                            data-selected-text-format="count > 2" data-count-selected-text ="Wybrano {0} kategorie" multiple>
+                        {{#each categories}}
+                            <option value="{{this.id_category}}">{{this.name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-4 buttons">
+                    <button type="submit" id="show-recipes-by-category-btn">Szukaj</button>
+                </div>
             </div>
-            <button type="submit" id="show-recipes-by-category-btn">Szukaj przepisów</button>
         </div>
-
     </section>
 
     <div class="alert alert-danger" id="recipes-error-alert" hidden></div>
-    <div class="container">
-        <div class="row" id="rendered_CRecipes-list">
-
-        </div>
+    <div class="container" style="margin-top: 7rem;">
+        <div class="row" id="rendered_CRecipes-list"></div>
     </div>
-
 </div>
+
+
 <script src="/javascripts/categorySelector.js"></script>
 </body>

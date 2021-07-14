@@ -52,6 +52,10 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+figcaption:hover{
+  outline: black;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -230,7 +234,7 @@ button {
 
 button:focus {
   outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
+  outline: none !important;
 }
 
 input,
@@ -259,7 +263,7 @@ select {
 }
 
 select {
-  word-wrap: normal;
+  /*word-wrap: ;*/
 }
 
 button,
@@ -478,11 +482,8 @@ mark,
 
 .img-thumbnail {
   padding: 0.25rem;
-  background-color: #fff;
-  border: 1px solid #dee2e6;
-  border-radius: 0.25rem;
-  max-width: 100%;
-  height: auto;
+  max-width: 300px;
+  height: 300px;
 }
 
 .figure {

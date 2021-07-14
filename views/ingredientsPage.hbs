@@ -1,32 +1,39 @@
+<link rel="stylesheet" href="/stylesheets/buttons.css" type="text/css">
+
 <body>
 {{> navbar}}
 
-<div class="center">
+<div class="container">
     <section id="ingredient">
-        <div style="margin-bottom: 0.5rem " class="container">
+        <div class="container">
             <h2>Wyszukaj przepisy po składnikach</h2>
-            <div class="multi_select_box">
-                <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true" title="Nie wybrano żadnych składników"
-                        data-selected-text-format="count > 3" data-count-selected-text ="Wybrano {0}"
-                        noneResultsText='Nie ma takiego składnika, spróbuj wpisać inaczej' multiple>
-                    {{#each ingredients}}
-                        <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
-                    {{/each}}
-                </select>
+            <div class="row" id="background-color2">
+                <div class="multi_select_box col-sm-4" >
+                    <select class="ingredients-select w-100" id="ingredients-select" data-live-search="true"
+                            title="Nie wybrano żadnych składników"
+                            data-selected-text-format="count > 3" data-count-selected-text="Wybrano {0}"
+                            noneResultsText='Nie ma takiego składnika, spróbuj wpisać inaczej' multiple>
+                        {{#each ingredients}}
+                            <option value="{{this.id_ingredient}}">{{this.ing_name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="col-sm-4 buttons">
+                    <button type="submit" id="show-recipes-by-ingredients-btn" >Szukaj</button>
+                </div>
             </div>
-            <button type="submit" id="show-recipes-by-ingredients-btn" style="margin-top: 20px;">Szukaj przepisów
-            </button>
         </div>
     </section>
 
-    <div class="alert alert-danger" id="recipes-error-alert" hidden> </div>
-    <div class="container">
+    <div class="alert alert-danger" id="recipes-error-alert" hidden></div>
+    <div class="container" style="margin-top: 7rem;">
         <div class="row" id="rendered_recipes-list">
 
         </div>
     </div>
-
 </div>
+
+
 
 <script src="/javascripts/main.js"></script>
 

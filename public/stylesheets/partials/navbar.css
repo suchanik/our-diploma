@@ -37,7 +37,7 @@ i.far.fa-times-circle {
     margin-left: 1.5rem;
 }
 
-.v-line {
-    border-left: white;
-    height: 10px; !important;
+.v-line{
+    border-left: 1px solid beige;
+    height: 46px;
 }

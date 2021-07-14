@@ -34,7 +34,9 @@ const renderSelectedRecipes = recipes => {
         $list.append(`<div class="col-sm-4" >
                         <a href=/recipes/${recipe.id} >
                             <img src="${recipe.picture_path}"
-                             class="img-fluid">
+                             class="img-box">
+                        </a>
+                        <a href=/recipes/${recipe.id} >
                             <figcaption>${recipe.name}</figcaption>
                         </a> 
                     </div>

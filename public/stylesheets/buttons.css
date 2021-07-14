@@ -1,0 +1,40 @@
+button{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.buttons button {
+    margin-top: 0.3rem;
+    background-color: #6FCF97;
+    border-color: white;
+    border-style: solid;
+    border-width: 3px;
+    width: 80px;
+    outline: none !important;
+}
+.buttons button:hover{
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.55);
+}
+
+#add-description-btn {
+    margin: 0.5rem 0 4rem 0;
+    background-color: #6FCF97;
+    border-color: white;
+    border-style: solid;
+    border-width: 3px;
+    width: 180px;
+    outline: none !important;
+}
+#edit-user-btn {
+    margin: 0.5rem 0 4rem 0;
+    background-color: #6FCF97;
+    border-color: white;
+    border-style: solid;
+    border-width: 3px;
+    width: 132px;
+    outline: none !important;
+}
+
+.buttons .cancel{
+    background-color: white;
+    border-color: #6FCF97;
+}
