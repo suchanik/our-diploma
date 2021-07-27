@@ -57,7 +57,7 @@ router.post('/addRecipe',  async (req, res, next) => {
         const {userId} = req.session;
         // console.log(req.files.pic);
 
-        console.log("HAHAHHA", getAppRootPath());
+        // console.log("HAHAHHA", getAppRootPath());
 
         let picture = req.files.pic;
         const uploadPath = getAppRootPath() + path.sep + "images" + path.sep + picture.name;

@@ -13,12 +13,12 @@
             <div class="container">
                 <div class="row">
                     {{#each lastRecipes}}
-                        <input id="userId" type="hidden" value={{recipe.id}}>
+<!--                        <input id="userId" type="hidden" value={{recipe.id}}>-->
                         <div class="col-sm-4">
-                            <a href=/recipes/{{this.id}}>
+                            <a href=/recipes/{{this.id_recipe}}>
                                 <img src="/{{this.picture_path}}" class="img-box">
                             </a>
-                            <a href=/recipes/${recipeId}>
+                            <a href=/recipes/{{this.id_recipe}}>
                                 <figcaption>{{this.name}}</figcaption>
                             </a>
                         </div>

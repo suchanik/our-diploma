@@ -27,6 +27,15 @@ h2 {
     transform: matrix(1, -.05, .03, 1, 0, 0);
     z-index: -1;
 }
+.background-color-last:before {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 30px;
+    background: #6FCF97;
+    transform: matrix(1, -.05, .03, 1, 0, 0);
+    z-index: -1;
+}
 
 a img:hover {
     opacity: 70%;

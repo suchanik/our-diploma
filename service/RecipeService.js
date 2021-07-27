@@ -107,6 +107,37 @@ const getLast3Recipes = () =>{
     })
 }
 
+const lastRatedRecipes = id =>{
+    return new Promise((resolve, reject) => {
+        connection.query('SELECT DISTINCT * from recipes ' +
+            'inner join rating on recipes.id_recipe = rating.id_recipe ' +
+            'WHERE rating.id_user = ? ' +
+            'ORDER BY rating.id_rating DESC LIMIT 3',[id], ((err, result, fields) => {
+            if (err) {
+                console.log(result);
+                return reject(err);
+            }
+
+            resolve(result);
+        }))
+    })
+}
+const favouriteRecipes = id =>{
+    return new Promise((resolve, reject) => {
+        connection.query('SELECT DISTINCT * from recipes' +
+            'inner join rating on recipes.id_recipe = rating.id_recipe' +
+            'WHERE rating.id_user = ? ' +
+            'ORDER BY rating.rate DESC ;',[id], ((err, result, fields) => {
+            if (err) {
+                console.log(result);
+                return reject(err);
+            }
+
+            resolve(result);
+        }))
+    })
+}
+
 //dodawanie przepisu
 
 const addNewRecipe = (title, ingredientsIds, categoryIDs, description, userId, photoName) => {
@@ -203,4 +234,6 @@ module.exports = {
     getRandomRecipeId,
     getTopRecipes,
     getRecipebyUserIDs,
+    lastRatedRecipes,
+    favouriteRecipes
 }

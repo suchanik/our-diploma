@@ -5,6 +5,7 @@ const connection = require('../config/db_config')
 const bcrypt = require('bcrypt')
 
 const userService = require("../service/UserService")
+const recipeService = require("../service/RecipeService")
 
 
 router.get('/', function (req, res, next) {
@@ -17,16 +18,23 @@ router.get('/reg', function (req, res, next) {
     res.render('register');
 });
 
-router.get('/profile', function (req, res, next) {
+router.get('/profile', async (req, res, next) => {
+    const {userId} = req.session;
+
+    if (!userId) res.render("error");
+
+    const lastRated = await recipeService.lastRatedRecipes(userId);
 
     connection.query('select email, login  from users where id_user = ?', [req.session.userId], ((err, result, fields) => {
         const data = result.shift();
+
         if (!data) {
             res.render("error")
         } else {
             res.render('userProfil', {
                 login: data.login,
                 email: data.email,
+                lastRated,
             });
         }
     }))

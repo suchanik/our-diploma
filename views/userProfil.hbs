@@ -18,125 +18,56 @@
             </div>
 
             <div class="col-sm-6 user-data" style="margin-top: 3rem;">
-                    <h5>Login {{login}}</h5>
-                    <h5>E-mail {{email}}</h5>
-                    <div id="user-data-view" style="margin-top: 4rem;">
-                        <button id="edit-user-btn">Zmień haslo</button>
-                    </div>
+                <h5>Login {{login}}</h5>
+                <h5>E-mail {{email}}</h5>
+                <div id="user-data-view" style="margin-top: 4rem;">
+                    <button id="edit-user-btn">Zmień haslo</button>
+                </div>
 
-                    <div id="user-data-form" hidden>
-                        <input id="userId" type="hidden" value={{session.userId}}>
-                        <div class="row">
-                            <div class="col-2">
-                                <h5> Hasło</h5>
-                            </div>
-                            <div class="col-8">
-                                <input type="password" id="password" name="password">
-                            </div>
+                <div id="user-data-form" hidden>
+                    <input id="userId" type="hidden" value={{session.userId}}>
+                    <div class="row">
+                        <div class="col-2">
+                            <h5> Hasło</h5>
                         </div>
-                        <div class="d-inline-flex buttons" style="margin-left: 6rem;">
-                            <button class="button" id="save-profile-btn" type="submit"> Zapisz</button>
-                            <button class="cancel" id="cancel-profile-btn" type="button" style="margin-left: 1rem;"> Anuluj</button>
+                        <div class="col-8">
+                            <input type="password" id="password" name="password">
                         </div>
                     </div>
+                    <div class="d-inline-flex buttons" style="margin-left: 6rem;">
+                        <button class="button" id="save-profile-btn" type="submit"> Zapisz</button>
+                        <button class="cancel" id="cancel-profile-btn" type="button" style="margin-left: 1rem;">
+                            Anuluj
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
 
         <div style="margin-top: 4rem;" class="container">
             <div>
-                <h4 class="background-color-top">Ostatnio ocenione przepisy</h4>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                         class="img-fluid">
-                    <figcaption>Spaghetti Carbonara</figcaption>
-
-                    <div id="rateRecipe">
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4">
-                    <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                         class="img-fluid">
-                    <figcaption>Spaghetti Bolognese</figcaption>
-
-                    <div id="rateRecipe">
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4">
-                    <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                         class="img-fluid">
-                    <figcaption>Jajko na miękko</figcaption>
-                    <div id="rateRecipe">
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
+                <h4 class="background-color-last" style="margin-bottom: 2rem;">Ostatnio ocenione przepisy</h4>
             </div>
 
-        </div>
+            <section>
+                <div class="container">
+                    <div class="row">
+                        {{#each lastRated}}
 
-        <div style="margin-top: 4rem;" class="container">
-            <div>
-                <a href="/favourite" style="color: black;"><h4 class="background-color-top">Ulubione przepisy</h4></a>
-            </div>
-            <div class="row">
-                <div class="col-12 col-md-4">
-                    <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                         class="img-fluid">
-                    <figcaption>Spaghetti Carbonara</figcaption>
-
-                    <div id="rateRecipe">
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
+                            <div class="col-sm-4">
+                                <a href=/recipes/{{this.id_recipe}}>
+                                    <img src="/{{this.picture_path}}" class="img-box">
+                                </a>
+                                <a href=/recipes/{{this.id_recipe}}>
+                                    <figcaption>{{this.name}}</figcaption>
+                                </a>
+                            </div>
+                        {{/each}}
                     </div>
                 </div>
-                <div class="col-6 col-md-4">
-                    <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                         class="img-fluid">
-                    <figcaption>Jajko na miękko</figcaption>
-
-                    <div id="rateRecipe">
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
-                <div class="col-6 col-md-4">
-                    <img src="https://mediaconvert.kukbuk.pl/ksTNHdwFDa7biY17BBiWpov4JEeRSOx4uNtbqEs6RrM/fill/1418/1682/fp:0.5:0.5/1/aHR0cHM6Ly9tZWRp/YS5rdWtidWsucGwv/bWVkaWEvaW1hZ2Vz/LzIwMTkvMDMtMTgv/ZmV0dHVjaW5lMV90/aW5pZmllZF90aW5p/ZmllZC5qcGc.jpg"
-                         class="img-fluid">
-                    <figcaption>Spaghetti Bolognese</figcaption>
-                    <div id="rateRecipe">
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                        <i class="far fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
+            </section>
         </div>
     </div>
-
 </div>
 
 
